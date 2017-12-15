@@ -32,20 +32,20 @@
              android:orientation="horizontal"
              android:weightSum="1">
              <EditText
-                 android:id="@+id/edtPassword"
+                 android:id="@+id/edtsms"
                  android:layout_width="0dp"
                  android:layout_height="@dimen/edt_height"
                  android:layout_weight="0.80"
                  android:layout_marginBottom="20dp"
-                 android:backgroundTint="#ffff"
-                 android:background="@drawable/button"
+                 android:background="@drawable/edt"
                  android:hint=" SMS"
                  android:maxLines="1"
-                 android:inputType="textPassword"
+                 android:textColor="@color/colortext"
                  android:textColorHint="@color/colortextHint"
                  android:textSize="20dp"
                  android:drawableLeft="@mipmap/ic_password"/>
              <ImageView
+                 android:id="@+id/qrscan"
                  android:layout_width="0dp"
                  android:layout_height="@dimen/edt_height"
                  android:layout_weight="0.20"

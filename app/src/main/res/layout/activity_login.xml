@@ -31,11 +31,11 @@
                 android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edt_height"
-                android:background="@drawable/button"
-                android:backgroundTint="#ffff"
+                android:background="@drawable/edt"
                 android:hint="Email"
                 android:maxLines="1"
                 android:inputType="textEmailAddress"
+                android:textColor="@color/colortext"
                 android:textColorHint="@color/colortextHint"
                 android:textSize="20dp"
                 android:drawableLeft="@mipmap/ic_user"
@@ -46,12 +46,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edt_height"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="#ffff"
-                android:background="@drawable/button"
+                android:background="@drawable/edt"
                 android:hint="Password"
                 android:maxLines="1"
                 android:inputType="textPassword"
-
+                android:textColor="@color/colortext"
                 android:textColorHint="@color/colortextHint"
                 android:textSize="20dp"
                 android:drawableLeft="@mipmap/ic_password"/>
@@ -63,7 +62,6 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/button"
-                android:backgroundTint="@color/colorButton"
                 android:text="เข้าสู่ระบบ"
                 android:textColor="@color/colorButtonf" />
 
