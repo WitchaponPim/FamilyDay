@@ -28,7 +28,7 @@
             android:screenDensity="xhdpi"
             android:screenSize="normal" />
     </compatible-screens>
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,7 +46,9 @@
         <activity android:name=".SelectAct" />
         <activity android:name=".ScanQR" />
         <activity android:name=".SuccessActivity" />
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".RegisterActivity">
+        </activity>
     </application>
 
 </manifest>

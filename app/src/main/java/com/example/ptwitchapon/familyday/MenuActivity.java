@@ -18,10 +18,10 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
 
-        String[] list = {"ลงทะเบียนล่วงหน้า"
-                , "ลงทะเบียนหน้างาน"
-                , "คูปองอาหาร"
-                , "คลังทรัพยากร"};
+        String[] list = {"ลงทะเบียนหน้างาน"
+                , "ลงทะเบียนล่วงหน้า"
+                , "ตรวจสอบยอดลงทะเบียนแต่ละนิติ"
+                , "ตรวจสอบยอดลงทะเบียนทั้งหมด"};
 
         MenuAdapter adapter = new MenuAdapter(getApplicationContext(), list);
 
@@ -34,20 +34,20 @@ public class MenuActivity extends AppCompatActivity {
                 String title = null;
                 switch (i) {
                     case 0:
-                        intent = new Intent(MenuActivity.this, SelectAct.class);
-                        title = "ลงทะเบียนล่วงหน้า";
+                        intent = new Intent(MenuActivity.this, RegisterActivity.class);
+                        title = "ลงทะเบียนหน้างาน";
                         break;
                     case 1:
                         intent = new Intent(MenuActivity.this, SelectAct.class);
-                        title = "ลงทะเบียนหน้างาน";
+                        title = "ลงทะเบียนล่วงหน้า";
                         break;
                     case 2:
                         intent = new Intent(MenuActivity.this, ScanQR.class);
-                        title = "คูปองอาหาร";
+                        title = "ตรวจสอบยอดลงทะเบียนแต่ละนิติ";
                         break;
                     case 3:
-                        intent = new Intent(MenuActivity.this, SuccessActivity.class);
-                        title = "คลังทรัพยากร";
+                        intent = new Intent(MenuActivity.this, ScanQR.class);
+                        title = "ตรวจสอบยอดลงทะเบียนทั้งหมด";
                         break;
                 }
                 intent.putExtra("title", title);
