@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="20dp"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="#f1cf9d"
+    android:background="#e7c59d"
     android:gravity="center_vertical"
     android:orientation="horizontal" >
 
     <!--<ImageView-->
-        <!--android:id="@+id/imageView1"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:background="@mipmap/ic_launcher" />-->
+    <!--android:id="@+id/imageView1"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:background="@mipmap/ic_launcher" />-->
 
     <TextView
         android:id="@+id/textView1"

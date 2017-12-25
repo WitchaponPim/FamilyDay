@@ -30,14 +30,13 @@
             android:orientation="horizontal"
             android:layout_weight="0.50"
             android:weightSum="1">
-
-
             <ImageView
                 android:id="@+id/act1"
                 android:layout_gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".50"
+
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginRight="10dp"
                 />

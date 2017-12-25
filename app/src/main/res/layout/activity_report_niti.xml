@@ -22,9 +22,9 @@
             android:textSize="50dp" />
 
         <TextView
+            android:id="@+id/total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="คน"
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="90dp" />
