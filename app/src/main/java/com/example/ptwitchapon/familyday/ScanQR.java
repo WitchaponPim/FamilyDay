@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ public class ScanQR extends AppCompatActivity {
     public static final int REQUEST_QR_SCAN = 4;
     String TAG = "Poon";
     EditText edt;
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,8 @@ public class ScanQR extends AppCompatActivity {
 
         ImageView img = (ImageView) findViewById(R.id.qrscan);
         edt = (EditText) findViewById(R.id.edtsms) ;
+
+        btn = (Button) findViewById(R.id.btn_submit);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getIntent().getStringExtra("title"));
@@ -34,6 +38,15 @@ public class ScanQR extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ScanQR.this,SelectAct.class);
+                startActivity(intent);
+
             }
         });
 

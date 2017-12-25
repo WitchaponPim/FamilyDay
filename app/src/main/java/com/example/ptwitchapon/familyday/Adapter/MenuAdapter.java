@@ -49,8 +49,6 @@ public class MenuAdapter extends BaseAdapter {
         TextView textView = (TextView)view.findViewById(R.id.textView1);
         textView.setText(menu[i]);
 
-
-
         return view;
     }
 }

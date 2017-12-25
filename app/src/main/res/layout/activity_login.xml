@@ -23,12 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_margin="30dp"
+            android:layout_margin="@dimen/fab_margin"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/edtEmail"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edt_height"
                 android:background="@drawable/edt"
@@ -37,7 +37,7 @@
                 android:inputType="textEmailAddress"
                 android:textColor="@color/colortext"
                 android:textColorHint="@color/colortextHint"
-                android:textSize="20dp"
+                android:textSize="@dimen/textsize"
                 android:drawableLeft="@mipmap/ic_user"
                 />
 
