@@ -6,4 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.example.ptwitchapon.familyday.ReportNitiActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/text1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="จำนวนผู้เข้าร่วมกิจกรรม "
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:gravity="bottom"
+            android:textSize="50dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="คน"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="90dp" />
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

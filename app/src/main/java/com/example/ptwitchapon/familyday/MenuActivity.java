@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
                         title = "ลงทะเบียนหน้างาน";
                         break;
                     case 2:
-                        intent = new Intent(MenuActivity.this, ScanQR.class);
+                        intent = new Intent(MenuActivity.this, ReportNitiActivity.class);
                         title = "ตรวจสอบยอดลงทะเบียนแต่ละนิติ";
                         break;
                     case 3:
