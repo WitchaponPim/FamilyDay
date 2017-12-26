@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-
+        //เมนู
         String[] list = {"ลงทะเบียนเข้างาน [ScanQR]"
                 , "ลงทะเบียนวันงาน"
                 , "ตรวจสอบยอดลงทะเบียนแต่ละนิติ"

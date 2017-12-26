@@ -26,50 +26,12 @@ public class ReportNitiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_niti);
-
-        total = (TextView) findViewById(R.id.total);
-
-
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                callbackListener = new CallbackListener() {
-
-                    @Override
-                    public void onResponse(String result, Retrofit retrofit) {
-                        totals = result + " คน";
-                        Log.d(TAG, totals);
-                        total.setText(totals);
-                        loadingDialog.dismiss();
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-                        Log.d(TAG, t.toString());
-                    }
-
-                    @Override
-                    public void onBodyError(ResponseBody responseBody) {
-                        Log.d(TAG, responseBody.toString());
-                    }
-
-                    @Override
-                    public void onBodyErrorIsNull() {
-                        Log.d(TAG, "null kUY!!!!!");
-                    }
-                };
-            }
-        });
-
         callbackListener = new CallbackListener() {
-
             @Override
             public void onResponse(String result, Retrofit retrofit) {
                 totals = result + " คน";
                 Log.d(TAG, totals);
                 total.setText(totals);
-                loadingDialog.dismiss();
             }
 
             @Override
@@ -88,6 +50,16 @@ public class ReportNitiActivity extends AppCompatActivity {
             }
         };
 
+        total = (TextView) findViewById(R.id.total);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                connect.callTotal(callbackListener);
+            }
+        });
 
         connect.callTotal(callbackListener);
     }
