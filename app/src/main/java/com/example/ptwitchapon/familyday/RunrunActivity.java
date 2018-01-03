@@ -33,8 +33,6 @@ public class RunrunActivity extends AppCompatActivity {
                         break;
                     case 2:
                         break;
-                    case 3:
-                        break;
                 }
                 intent.putExtra("title", title);
                 startActivity(intent);

@@ -57,11 +57,17 @@ public class ReportNitiActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 connect.callTotal(callbackListener);
+                onRefreshcomplete();
             }
         });
 
         connect.callTotal(callbackListener);
+    }
+
+    private void onRefreshcomplete() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 
