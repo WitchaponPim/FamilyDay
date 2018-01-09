@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ptwitchapon.familyday.ReportAllActivity">
+    tools:context="com.example.ptwitchapon.familyday.ReportByNitiActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -12,22 +12,36 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg" />
 
+
     <LinearLayout
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <ListView
-            android:layout_gravity="center_vertical"
-            android:id="@+id/listreport"
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search"
+            android:background="@drawable/edt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/area"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
+            <ListView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/listreportniti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
@@ -43,7 +57,7 @@
             android:weightSum="1"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/event"
+
                 android:textSize="@dimen/textsize"
                 android:textColor="@color/colortext"
                 android:layout_width="0dp"
@@ -52,7 +66,7 @@
                 android:text="จำนวนทั้งหมด" />
 
             <TextView
-                android:id="@+id/totalall"
+
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize"
                 android:textColor="@color/colortext"

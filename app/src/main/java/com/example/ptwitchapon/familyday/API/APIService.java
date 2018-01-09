@@ -1,5 +1,6 @@
 package com.example.ptwitchapon.familyday.API;
 
+import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
 
@@ -22,5 +23,8 @@ public interface APIService {
     @POST("mlogin")
     Call<UserModel> postLogin(@Field("username") String user, @Field("password") String pass);
     @GET("summary")
-    Call<ReportAllModel> getReportAll();
+    Call<List<ReportAllModel>> getReportAll();
+    @GET("rep_niti")
+    Call<List<RepNitiModel>> getRepNiti();
+
 }
