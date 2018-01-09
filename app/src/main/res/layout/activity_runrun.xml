@@ -21,7 +21,7 @@
             android:id="@+id/listRunrun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@color/colorBG"
+            android:divider="#d1000000"
             android:dividerHeight="2dp"
             />
 

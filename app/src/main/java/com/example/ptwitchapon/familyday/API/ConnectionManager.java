@@ -1,5 +1,7 @@
 package com.example.ptwitchapon.familyday.API;
 
+import com.example.ptwitchapon.familyday.Model.ReportAllModel;
+import com.example.ptwitchapon.familyday.Model.UserModel;
 import com.squareup.okhttp.ResponseBody;
 
 import retrofit.Call;
@@ -13,7 +15,7 @@ import retrofit.Retrofit;
  */
 
 public class ConnectionManager {
-    String API = "http://familyday.lpn.co.th/familyday/api/";
+    String API = "http://familyday.lpn.co.th/familyday_dev/familyday/api/";
     public ConnectionManager() {
 
     }
@@ -45,6 +47,61 @@ public class ConnectionManager {
             @Override
             public void onFailure(Throwable t) {
                     listener.onFailure(t);
+            }
+        });
+    }
+
+    public void login(final LoginCallbackListener listener,String user , String pass ){
+        Call call = con.postLogin(user,pass);
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Response<UserModel> response, Retrofit retrofit) {
+                UserModel user = response.body();
+                if (user == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( user, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
+            }
+        });
+
+    }
+
+    public void reportall(final ReportAllCallbackListener listener){
+        Call call = con.getReportAll();
+        call.enqueue(new Callback<ReportAllModel>() {
+            @Override
+            public void onResponse(Response<ReportAllModel> response, Retrofit retrofit) {
+                ReportAllModel report_a =  response.body();
+                if (report_a == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( report_a, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
             }
         });
     }

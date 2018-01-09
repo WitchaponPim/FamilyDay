@@ -2,33 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ptwitchapon.familyday">
 
-    <compatible-screens>
-        <screen
-            android:screenDensity="ldpi"
-            android:screenSize="small" />
-        <screen
-            android:screenDensity="mdpi"
-            android:screenSize="small" />
-        <screen
-            android:screenDensity="hdpi"
-            android:screenSize="small" />
-        <screen
-            android:screenDensity="xhdpi"
-            android:screenSize="small" />
-        <screen
-            android:screenDensity="ldpi"
-            android:screenSize="normal" />
-        <screen
-            android:screenDensity="mdpi"
-            android:screenSize="normal" />
-        <screen
-            android:screenDensity="hdpi"
-            android:screenSize="normal" />
-        <screen
-            android:screenDensity="xhdpi"
-            android:screenSize="normal" />
-    </compatible-screens>
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -48,9 +21,10 @@
         <activity android:name=".SelectAct" />
         <activity android:name=".ScanQR" />
         <activity android:name=".SuccessActivity" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".ReportNitiActivity"></activity>
+        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ReportNitiActivity" />
+        <activity android:name=".ReportAllActivity"></activity>
     </application>
 
 </manifest>

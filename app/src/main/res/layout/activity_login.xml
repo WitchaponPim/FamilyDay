@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/button"
+                android:background="@drawable/button_s1"
                 android:text="เข้าสู่ระบบ"
                 android:textColor="@color/colorButtonf" />
 

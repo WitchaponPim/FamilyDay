@@ -3,4 +3,9 @@
     <string-array name="list1">
         <item>กรุณาเลือก</item>
     </string-array>
+
+    <string name="act1">กิจกรรมในสวน</string>
+    <string name="act2">เดิน-วิ่ง</string>
+    <string name="act3">เกมส์-กีฬาประชาคม</string>
+    <string name="act4">คอนเสิร์ต</string>
 </resources>
