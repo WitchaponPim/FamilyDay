@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class SelectAct extends AppCompatActivity implements View.OnClickListener {
     Button act1;
@@ -49,24 +51,34 @@ public class SelectAct extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         String head = null;
+        Intent intent = null;
+        ArrayList<String> list = new ArrayList<>();
         switch (v.getId()) {
             case R.id.act1:
                 head = act1.getText().toString();
+                intent = new Intent(SelectAct.this,ScanQR.class);
                 break;
             case R.id.act2:
                 head = act2.getText().toString();
+                intent = new Intent(SelectAct.this,RunrunActivity.class);
+                list.add("2.5 กม.");
+                list.add("5.0 กม.");
                 break;
             case R.id.act3:
                 head = act3.getText().toString();
+                intent = new Intent(SelectAct.this,ScanQR.class);
+
                 break;
             case R.id.act4:
                 head = act4.getText().toString();
+                intent = new Intent(SelectAct.this,ScanQR.class);
                 break;
             default:
                 break;
         }
-        Intent intent = new Intent(SelectAct.this,ScanQR.class);
+
         intent.putExtra("title", head);
+        intent.putExtra("list",list);
         startActivity(intent);
     }
 }

@@ -52,7 +52,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/colortext"
                 android:textColorHint="@color/colortextHint"
-                android:textSize="20dp"
+                android:textSize="@dimen/textsize"
                 android:drawableLeft="@mipmap/ic_password"/>
 
             <Button

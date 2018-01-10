@@ -1,5 +1,6 @@
 package com.example.ptwitchapon.familyday.API;
 
+import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
@@ -128,6 +129,33 @@ public class ConnectionManager {
                 } else {
                     //200
                     listener.onResponse( report_niti, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
+            }
+        });
+    }
+
+    public void scanqr(final ScanQrCallbackListener listener,String qr,String user,String act_code){
+        Call call = con.scan_QR(qr,user,act_code);
+        call.enqueue(new Callback<RegisModel>() {
+            @Override
+            public void onResponse(Response<RegisModel> response, Retrofit retrofit) {
+                RegisModel regisModel =  response.body();
+                if (regisModel == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( regisModel, retrofit);
                 }
             }
 

@@ -15,6 +15,8 @@ import com.example.ptwitchapon.familyday.Adapter.MenuAdapter;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class MenuActivity extends AppCompatActivity {
 
 
@@ -25,13 +27,15 @@ public class MenuActivity extends AppCompatActivity {
         TextView text = (TextView) findViewById(R.id.user);
         ListView listView = (ListView) findViewById(R.id.listView1);
         Button logout = (Button) findViewById(R.id.btn_logout);
-        text.setText("User : "+Utils.userModel.getProfile().getFirst_name());
+        text.setText("User : " + Utils.userModel.getProfile().getFirst_name());
 
         //เมนู
-        final String[] list = {"ลงทะเบียนเข้างาน [ScanQR]"
-                , "ลงทะเบียนวันงาน"
-                , "ตรวจสอบยอดลงทะเบียนแต่ละนิติ"
-                , "ตรวจสอบยอดลงทะเบียนทั้งหมด"};
+        final ArrayList<String> list = new ArrayList<>();
+        list.add("ลงทะเบียนเข้างาน [ScanQR]");
+        list.add("ลงทะเบียนวันงาน");
+        list.add("ตรวจสอบยอดลงทะเบียนแต่ละนิติ");
+        list.add("ตรวจสอบยอดลงทะเบียนทั้งหมด");
+
 
         MenuAdapter adapter = new MenuAdapter(getApplicationContext(), list);
         listView.setAdapter(adapter);
@@ -43,19 +47,19 @@ public class MenuActivity extends AppCompatActivity {
                 switch (i) {
                     case 0:
                         intent = new Intent(MenuActivity.this, SelectAct.class);
-                        title = list[0];
+                        title = list.get(0);
                         break;
                     case 1:
                         intent = new Intent(MenuActivity.this, RegisterActivity.class);
-                        title = list[1];
+                        title = list.get(1);
                         break;
                     case 2:
-                        intent = new Intent(MenuActivity.this, ReportNitiActivity.class);
-                        title = list[2];
+                        intent = new Intent(MenuActivity.this, ReportByNitiActivity.class);
+                        title = list.get(2);
                         break;
                     case 3:
                         intent = new Intent(MenuActivity.this, ReportNitiActivity.class);
-                        title = list[3];
+                        title = list.get(3);
                         break;
                 }
                 intent.putExtra("title", title);

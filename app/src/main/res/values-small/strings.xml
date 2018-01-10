@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">FamilyDay</string>
-    <string-array name="list1">
-        <item>กรุณาเลือก</item>
-    </string-array>
-</resources>

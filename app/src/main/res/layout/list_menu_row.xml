@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="@dimen/list_height"
     android:background="#ededed"
     android:gravity="center_vertical"
     android:orientation="horizontal" >
@@ -13,13 +13,24 @@
         <!--android:layout_margin="10dp"-->
         <!--android:background="@mipmap/ic_launcher" />-->
 
+    <!--<TextView-->
+        <!--android:id="@+id/textView1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAlignment="center"-->
+        <!--android:text="Text"-->
+        <!--android:autoSizeTextType="uniform"-->
+        <!--android:autoSizeMinTextSize="18dp"-->
+        <!--android:autoSizeMaxTextSize="30dp"-->
+        <!--android:autoSizeStepGranularity="2dp"-->
+        <!--android:textColor="@color/colorButton" />-->
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Text"
-        android:textSize="@dimen/textsize"
-        android:textColor="@color/colorButton" />
+    android:id="@+id/textView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textAlignment="center"
+    android:text="Text"
+    android:textSize="@dimen/textsize_H"
+    android:textColor="@color/colorButton" />
 
 </LinearLayout>

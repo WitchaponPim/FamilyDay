@@ -1,5 +1,6 @@
 package com.example.ptwitchapon.familyday.API;
 
+import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
@@ -26,5 +27,7 @@ public interface APIService {
     Call<List<ReportAllModel>> getReportAll();
     @GET("rep_niti")
     Call<List<RepNitiModel>> getRepNiti();
+    @POST("qrChk")
+    Call<RegisModel> scan_QR(@Field("qrcode")String qr,@Field("username") String user,@Field("activity") String act_code);
 
 }

@@ -11,23 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".SelectAct" />
-        <activity android:name=".ScanQR" />
-        <activity android:name=".SuccessActivity" />
-        <activity android:name=".MenuActivity"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ReportNitiActivity" />
-        <activity android:name=".ReportAllActivity">
-
-        </activity>
-        <activity android:name=".ReportByNitiActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SelectAct" />
+        <activity android:name=".ScanQR" />
+        <activity android:name=".SuccessActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ReportNitiActivity" />
+        <activity android:name=".RunrunActivity" />
+        <activity android:name=".ReportAllActivity" />
+        <activity android:name=".ReportByNitiActivity" />
+        <activity android:name=".SelectSubActivity" />
+        <activity android:name=".ConfirmActivity"></activity>
     </application>
 
 </manifest>

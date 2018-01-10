@@ -11,6 +11,14 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:src="@drawable/bg" />
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize"
+        android:gravity="right"
+        android:layout_marginRight="5dp"
+        android:text="User : "/>
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
@@ -19,14 +27,13 @@
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/user"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.2"
             android:textSize="30dp"
             android:gravity="center"
-            android:text="User : "/>
+            android:text="Family Day #12"/>
 
         <ListView
             android:id="@+id/listView1"

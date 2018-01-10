@@ -9,15 +9,17 @@ import android.widget.TextView;
 
 import com.example.ptwitchapon.familyday.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by ptwitchapon on 15/12/2560.
  */
 
 public class MenuAdapter extends BaseAdapter {
     Context context;
-    String[] menu;
+    ArrayList<String> menu;
 
-    public MenuAdapter(Context context,String[] menu) {
+    public MenuAdapter(Context context,ArrayList<String> menu) {
         this.context = context;
         this.menu = menu;
 
@@ -25,7 +27,7 @@ public class MenuAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return menu.length;
+        return menu.size();
     }
 
     @Override
@@ -47,7 +49,7 @@ public class MenuAdapter extends BaseAdapter {
             view = mInflater.inflate(R.layout.list_menu_row, viewGroup, false);
 
         TextView textView = (TextView)view.findViewById(R.id.textView1);
-        textView.setText(menu[i]);
+        textView.setText(menu.get(i));
 
         return view;
     }
