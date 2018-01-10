@@ -27,8 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-
             <ListView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/listreportniti"
@@ -65,7 +63,7 @@
                 android:text="จำนวนทั้งหมด" />
 
             <TextView
-
+                android:id="@+id/summaryall"
                 android:textStyle="bold"
                 android:textSize="@dimen/textsize"
                 android:textColor="@color/colortext"

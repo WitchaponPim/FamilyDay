@@ -1,42 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:background="#ededed"
+
     android:gravity="center_vertical"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:weightSum="1">
+
         <TextView
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:id="@+id/niti"
-            android:textColor="@color/colortext"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:text="niti" />
+            android:layout_height="match_parent"
+            android:layout_weight=".4"
+            android:text="niti"
+            android:textColor="@color/colortext" />
 
-        <TextView
-            android:id="@+id/ev1"
-            android:textColor="@color/colortext"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".25"
-            android:gravity="right"
-            android:text="ev1" />
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
+            android:weightSum="1">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".35"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="กีฬา"
+                    android:gravity="center"
+                    android:layout_weight=".2"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight=".8"
+                    android:weightSum="1">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight=".5"
+                        android:weightSum="1">
+                        <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".3"
+                        android:gravity="center"
+                        android:text="เดิน-วิ่ง"
+                         />
+                        <TextView
+                        android:id="@+id/ev1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".7"
+                        android:gravity="center"
+                        android:text="ev1"
+                        android:textColor="@color/colortext" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight=".5"
+                        android:weightSum="1">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".3"
+                            android:gravity="center"
+                            android:text="กีฬา"
+                             />
+                        <TextView
+                            android:id="@+id/ev2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".7"
+                            android:gravity="center"
+                            android:text="ev2"
+                            android:textColor="@color/colortext" />
+                    </LinearLayout>
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/ev2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".25"
-            android:textColor="@color/colortext"
-            android:gravity="right"
-            android:text="ev2"/>
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#6e6e6e"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".35"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="ผู้สมัคร"
+                    android:gravity="center"
+                    android:layout_weight=".2"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight=".8"
+                    android:weightSum="1">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight=".5"
+                        android:weightSum="1">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".3"
+                            android:gravity="center"
+                            android:text="หลัก"
+                            />
+                        <TextView
+                            android:id="@+id/ev3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".7"
+                            android:gravity="center"
+                            android:text="ev3"
+                            android:textColor="@color/colortext" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight=".5"
+                        android:weightSum="1">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".3"
+                            android:gravity="center"
+                            android:text="ผู้ติดตาม"
+                             />
+                        <TextView
+                            android:id="@+id/ev4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".7"
+                            android:gravity="center"
+                            android:text="ev4"
+                            android:textColor="@color/colortext" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#6e6e6e"/>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".3"
+                android:weightSum="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="ทั้งหมด"/>
+                <TextView
+                    android:id="@+id/total_rep_niti"
+                    android:textColor="@color/colortext"
+                    android:textSize="@dimen/textsize"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="TOTAL"
+                    android:layout_weight=".8"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

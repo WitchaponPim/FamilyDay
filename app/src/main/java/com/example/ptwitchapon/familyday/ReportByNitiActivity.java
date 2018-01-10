@@ -15,6 +15,8 @@ import com.example.ptwitchapon.familyday.Adapter.RepNitiAdapter;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.squareup.okhttp.ResponseBody;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import retrofit.Retrofit;
@@ -24,7 +26,7 @@ public class ReportByNitiActivity extends AppCompatActivity {
     ListView reportniti;
     int totals;
     SearchView search;
-    TextView total;
+    TextView summary;
     RepNitiAdapter adapter;
     RepNitiCallbackListener repNitiCallbackListener;
     ConnectionManager connect = new ConnectionManager();
@@ -32,6 +34,7 @@ public class ReportByNitiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_by_niti);
+        summary = (TextView) findViewById(R.id.summaryall);
         reportniti = (ListView) findViewById(R.id.listreportniti);
         search = (SearchView) findViewById(R.id.search);
 
@@ -40,6 +43,9 @@ public class ReportByNitiActivity extends AppCompatActivity {
             public void onResponse(List<RepNitiModel> repNitiModels, Retrofit retrofit) {
                 Utils.repNitiModels = repNitiModels;
                 Log.d(TAG, "onResponse: "+repNitiModels.get(0).getNT_TNAME().toString());
+                for (int i=0;i<Utils.repNitiModels.size();i++){
+                    totals = totals+Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT())+Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT2());
+                }
                 setadapter();
             }
 
@@ -65,6 +71,7 @@ public class ReportByNitiActivity extends AppCompatActivity {
 
         adapter = new RepNitiAdapter(getApplicationContext(),Utils.repNitiModels);
         reportniti.setAdapter(adapter);
+        summary.setText(String.valueOf(totals));
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {

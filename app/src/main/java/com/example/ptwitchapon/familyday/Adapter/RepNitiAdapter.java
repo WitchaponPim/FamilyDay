@@ -13,6 +13,8 @@ import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,10 +60,23 @@ public class RepNitiAdapter extends BaseAdapter implements Filterable{
         TextView niti = (TextView)view.findViewById(R.id.niti);
         TextView ev1 = (TextView)view.findViewById(R.id.ev1);
         TextView ev2 = (TextView)view.findViewById(R.id.ev2);
+        TextView ev3 = (TextView)view.findViewById(R.id.ev3);
+        TextView ev4 = (TextView)view.findViewById(R.id.ev4);
+        TextView total = (TextView)view.findViewById(R.id.total_rep_niti);
+
+
 
         niti.setText(models.get(i).getNT_TNAME());
-        ev1.setText(models.get(i).getS_EVENT());
-        ev2.setText(models.get(i).getS_EVENT2());
+        ev1.setText(models.get(i).getS_RUNNING());
+        ev2.setText(models.get(i).getS_SPORT());
+        ev3.setText(models.get(i).getS_EVENT());
+        ev4.setText(models.get(i).getS_EVENT2());
+        int totals = Integer.valueOf(models.get(i).getS_RUNNING())
+                +Integer.valueOf(models.get(i).getS_SPORT())
+                +Integer.valueOf(models.get(i).getS_EVENT())
+                +Integer.valueOf(models.get(i).getS_EVENT2());
+        total.setText(String.valueOf(totals));
+
         return view;
     }
 
