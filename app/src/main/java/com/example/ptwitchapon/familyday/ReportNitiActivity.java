@@ -20,7 +20,7 @@ public class ReportNitiActivity extends AppCompatActivity {
     ProgressDialog loadingDialog;
     CallbackListener callbackListener;
     String totals;
-    SwipeRefreshLayout swipeRefreshLayout;
+//    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,22 +52,22 @@ public class ReportNitiActivity extends AppCompatActivity {
 
         total = (TextView) findViewById(R.id.total);
 
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                connect.callTotal(callbackListener);
-                onRefreshcomplete();
-            }
-        });
+//        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+//
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                connect.callTotal(callbackListener);
+//                onRefreshcomplete();
+//            }
+//        });
 
         connect.callTotal(callbackListener);
     }
 
     private void onRefreshcomplete() {
-        swipeRefreshLayout.setRefreshing(false);
+//        swipeRefreshLayout.setRefreshing(false);
     }
 
 

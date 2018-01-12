@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/fab_margin"
             android:weightSum="1">
 
             <LinearLayout
@@ -37,15 +37,12 @@
                 android:weightSum="1">
                 <Button
                     android:id="@+id/act1"
-                    android:textSize="@dimen/textsize"
+                    android:textSize="@dimen/textsize_H"
                     android:textStyle="bold"
                     android:textColor="@color/off_white"
                     android:text="@string/act1"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_margin="@dimen/fab_margin"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -53,15 +50,12 @@
                     />
                 <Button
                     android:id="@+id/act2"
-                    android:textSize="@dimen/textsize"
+                    android:textSize="@dimen/textsize_H"
                     android:textStyle="bold"
                     android:textColor="@color/off_white"
                     android:text="@string/act2"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_margin="@dimen/fab_margin"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -76,15 +70,12 @@
                 android:layout_weight="0.50">
                 <Button
                     android:id="@+id/act3"
-                    android:textSize="@dimen/textsize"
+                    android:textSize="@dimen/textsize_H"
                     android:textStyle="bold"
                     android:textColor="@color/off_white"
                     android:text="@string/act3"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_margin="@dimen/fab_margin"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -92,15 +83,12 @@
                     />
                 <Button
                     android:id="@+id/act4"
-                    android:textSize="@dimen/textsize"
+                    android:textSize="@dimen/textsize_H"
                     android:textStyle="bold"
                     android:textColor="@color/off_white"
                     android:text="@string/act4"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_margin="@dimen/fab_margin"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
