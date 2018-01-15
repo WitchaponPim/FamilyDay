@@ -51,32 +51,36 @@ public class SelectAct extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         String head = null;
+        String lists[] = null;
         Intent intent = null;
         ArrayList<String> list = new ArrayList<>();
         switch (v.getId()) {
             case R.id.act1:
                 head = act1.getText().toString();
                 intent = new Intent(SelectAct.this,ScanQR.class);
+                lists = getResources().getStringArray(R.array.otherList);
                 break;
             case R.id.act2:
                 head = act2.getText().toString();
                 intent = new Intent(SelectAct.this,RunrunActivity.class);
-                list.add("2.5 กม.");
-                list.add("5.0 กม.");
+                lists = getResources().getStringArray(R.array.runList);
                 break;
             case R.id.act3:
                 head = act3.getText().toString();
-                intent = new Intent(SelectAct.this,ScanQR.class);
-
+                intent = new Intent(SelectAct.this,RunrunActivity.class);
+                lists = getResources().getStringArray(R.array.sportList);
                 break;
             case R.id.act4:
                 head = act4.getText().toString();
                 intent = new Intent(SelectAct.this,ScanQR.class);
+                lists = getResources().getStringArray(R.array.otherList);
                 break;
             default:
                 break;
         }
-
+        for (int i =0;i<lists.length;i++){
+            list.add(lists[i]);
+        }
         intent.putExtra("title", head);
         intent.putExtra("list",list);
         startActivity(intent);

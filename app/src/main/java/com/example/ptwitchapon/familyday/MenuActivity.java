@@ -3,6 +3,7 @@ package com.example.ptwitchapon.familyday;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +36,8 @@ public class MenuActivity extends AppCompatActivity {
         list.add("ลงทะเบียนวันงาน");
         list.add("ตรวจสอบยอดลงทะเบียนแต่ละนิติ");
         list.add("ตรวจสอบยอดลงทะเบียนทั้งหมด");
+
+
 
 
         MenuAdapter adapter = new MenuAdapter(getApplicationContext(), list);

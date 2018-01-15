@@ -26,5 +26,8 @@ public class Utils {
         Toast toast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
         toast.show();
+
+
     }
+
 }

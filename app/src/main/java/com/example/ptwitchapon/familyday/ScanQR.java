@@ -24,7 +24,6 @@ public class ScanQR extends AppCompatActivity {
 
         ImageView img = (ImageView) findViewById(R.id.qrscan);
         edt = (EditText) findViewById(R.id.edtsms) ;
-
         btn = (Button) findViewById(R.id.btn_submit);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

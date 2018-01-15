@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.ptwitchapon.familyday.API.CallbackListener;
 import com.example.ptwitchapon.familyday.API.ConnectionManager;
+import com.example.ptwitchapon.familyday.Model.Report_allModel;
 import com.squareup.okhttp.ResponseBody;
 
 import retrofit.Retrofit;
@@ -19,7 +20,7 @@ public class ReportNitiActivity extends AppCompatActivity {
     ConnectionManager connect = new ConnectionManager();
     ProgressDialog loadingDialog;
     CallbackListener callbackListener;
-    String totals;
+    Report_allModel report_allModel;
 //    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -28,20 +29,20 @@ public class ReportNitiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_niti);
         callbackListener = new CallbackListener() {
             @Override
-            public void onResponse(String result, Retrofit retrofit) {
-                totals = result + " คน";
-                Log.d(TAG, totals);
-                total.setText(totals);
+            public void onResponse(Report_allModel result, Retrofit retrofit) {
+                report_allModel = result;
+                Log.d(TAG, report_allModel.getSUM()+" / "+ report_allModel.getTOTAL());
+                total.setText(report_allModel.getSUM()+" / "+ report_allModel.getTOTAL());
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d(TAG, t.toString());
+                Log.d(TAG, "onFailure: "+t.toString());
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
-                Log.d(TAG, responseBody.toString());
+                Log.d(TAG, "onBodyError: "+responseBody.toString());
             }
 
             @Override

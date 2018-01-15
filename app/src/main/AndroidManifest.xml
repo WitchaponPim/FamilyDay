@@ -28,7 +28,8 @@
         <activity android:name=".ReportAllActivity" />
         <activity android:name=".ReportByNitiActivity" />
         <activity android:name=".SelectSubActivity" />
-        <activity android:name=".ConfirmActivity"></activity>
+        <activity android:name=".ConfirmActivity">
+        </activity>
     </application>
 
 </manifest>

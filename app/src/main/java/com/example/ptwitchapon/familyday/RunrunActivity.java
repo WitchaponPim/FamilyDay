@@ -18,19 +18,18 @@ import java.util.Arrays;
 
 public class RunrunActivity extends AppCompatActivity {
         String TAG = "Poon";
+        ArrayList<String> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_runrun);
-        ArrayList<String> list = getIntent().getStringArrayListExtra("list");
+        list = getIntent().getStringArrayListExtra("list");
 
         MenuAdapter adapter = new MenuAdapter(getApplicationContext(), list);
         ListView listView = (ListView) findViewById(R.id.listRunrun);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getIntent().getStringExtra("title"));
 
-        String[] listt = getResources().getStringArray(R.array.ActList);
-        Log.d(TAG, listt[0]);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -46,16 +45,8 @@ public class RunrunActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = null;
-                String title = null;
-                switch (i) {
-                    case 0:
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                }
+                Intent intent = new Intent(RunrunActivity.this,ScanQR.class);
+                String title = list.get(i);
                 intent.putExtra("title", title);
                 startActivity(intent);
             }

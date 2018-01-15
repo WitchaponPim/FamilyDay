@@ -3,6 +3,7 @@ package com.example.ptwitchapon.familyday.API;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
+import com.example.ptwitchapon.familyday.Model.Report_allModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
 import com.squareup.okhttp.ResponseBody;
 
@@ -32,10 +33,10 @@ public class ConnectionManager {
 
     public void callTotal(final CallbackListener listener){
         Call call = con.gettotaluser();
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<Report_allModel>() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
-               String result = response.body();
+            public void onResponse(Response<Report_allModel> response, Retrofit retrofit) {
+                Report_allModel result = response.body();
                 if (result == null) {
                     //404 or the response cannot be converted to User.
                     ResponseBody responseBody = response.errorBody();

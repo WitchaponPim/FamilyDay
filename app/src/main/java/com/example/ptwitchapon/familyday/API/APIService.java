@@ -3,6 +3,7 @@ package com.example.ptwitchapon.familyday.API;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
+import com.example.ptwitchapon.familyday.Model.Report_allModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import retrofit.http.POST;
 
 public interface APIService {
     @GET("getNumOfEntry")
-    Call<String> gettotaluser();
+    Call<Report_allModel> gettotaluser();
     @FormUrlEncoded
     @POST("mlogin")
     Call<UserModel> postLogin(@Field("username") String user, @Field("password") String pass);

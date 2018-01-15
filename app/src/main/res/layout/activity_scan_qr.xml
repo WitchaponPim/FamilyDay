@@ -23,55 +23,64 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar"
             />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_margin="@dimen/fab_margin"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_margin="@dimen/fab_margin"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-                <EditText
-                    android:id="@+id/edtsms"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_marginBottom="20dp"
-                    android:layout_weight="0.80"
-                    android:background="@drawable/edt"
-                    android:drawableLeft="@mipmap/ic_password"
-                    android:hint=" SMS"
-                    android:maxLines="1"
-                    android:textColor="@color/colortext"
-                    android:textColorHint="@color/colortextHint"
-                    android:textSize="20dp" />
+                    <EditText
+                        android:id="@+id/edtsms"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="0.80"
+                        android:background="@drawable/edt"
+                        android:drawableLeft="@mipmap/ic_password"
+                        android:hint=" SMS"
+                        android:maxLines="1"
+                        android:textColor="@color/colortext"
+                        android:textColorHint="@color/colortextHint"
+                        android:textSize="20dp" />
 
-                <ImageView
-                    android:id="@+id/qrscan"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight="0.20"
-                    android:src="@drawable/qrscan" />
+                    <ImageView
+                        android:id="@+id/qrscan"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight="0.20"
+                        android:src="@drawable/qrscan" />
+                </LinearLayout>
+
+
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/button"
+                    android:backgroundTint="@color/colorButton"
+                    android:text="Submit"
+                    android:textColor="@color/colorButtonf" />
+
             </LinearLayout>
-
-
-
-            <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/button"
-                android:backgroundTint="@color/colorButton"
-                android:text="Submit"
-                android:textColor="@color/colorButtonf" />
-
         </LinearLayout>
+
 
 
     </LinearLayout>
