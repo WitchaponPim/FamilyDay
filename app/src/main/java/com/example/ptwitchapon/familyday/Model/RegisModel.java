@@ -8,20 +8,21 @@ import java.util.List;
 
 public class RegisModel {
 
+
     /**
-     * STATUS : ลงทะเบียนเรียบร้อย
+     * STATUS : แสดงข้อมูล
      * STATUS_ID : 1
-     * PROFILE : [{"RG_RUNNO":"1801014113","RG_FNAME":"สุดใจ","RG_LNAME":"กิจมณีแก้วสกุล","RG_UNIT":"A-1220"}]
-     * PARLRNT : [{"RG_RUNNO":"1801014114","RG_FNAME":"สรวิช","RG_LNAME":"รัตนลือชากุล","RG_UNIT":"A-1220"}]
+     * PROFILE : [{"RG_RUNNO":"1801014259","RG_FNAME":"พรเทพ555","RG_LNAME":"อ่ำเพชร","RG_UNIT":"C-0815"}]
+     * PARENT : [{"RG_RUNNO":"1801014260","RG_FNAME":"ชื่อจั๊ม","RG_LNAME":"นามสกุลทดสอบ","RG_UNIT":"C-0815"},{"RG_RUNNO":"1801014261","RG_FNAME":"นิฤมล","RG_LNAME":"เนมียะ","RG_UNIT":"A-1619"},{"RG_RUNNO":"1801014262","RG_FNAME":"นิฤมล","RG_LNAME":"เนมียะ","RG_UNIT":"A-1619"},{"RG_RUNNO":"1801014263","RG_FNAME":"นิฤมล2","RG_LNAME":"เนมียะ","RG_UNIT":"A-1619"},{"RG_RUNNO":"1801014264","RG_FNAME":"นินิ","RG_LNAME":"มิยะ","RG_UNIT":"A-1619"},{"RG_RUNNO":"1801014265","RG_FNAME":"ดดด","RG_LNAME":"กก","RG_UNIT":"A-1619"},{"RG_RUNNO":"1801014266","RG_FNAME":"นินิ","RG_LNAME":"มียะ","RG_UNIT":"C-0815"},{"RG_RUNNO":"1801014267","RG_FNAME":"ASD","RG_LNAME":"GWP","RG_UNIT":"C-0815"},{"RG_RUNNO":"1801014268","RG_FNAME":"อัครพล","RG_LNAME":"พิมพ์แจ่ม","RG_UNIT":"C-0815"},{"RG_RUNNO":"1801014270","RG_FNAME":"นิฤมล","RG_LNAME":"นมียะ","RG_UNIT":"C-0815"}]
      * ACTIVITIES : [{"ET_TNAME":"ธรรมะในสวน"},{"ET_TNAME":"ดนตรีในสวน"},{"ET_TNAME":"เกมส์-คอนเสิร์ต"}]
-     * LOCATION : ดนตรีในสวน
+     * LOCATION : 0
      */
 
     private String STATUS;
     private String STATUS_ID;
     private String LOCATION;
     private List<PROFILEBean> PROFILE;
-    private List<PARLRNTBean> PARLRNT;
+    private List<PARENTBean> PARENT;
     private List<ACTIVITIESBean> ACTIVITIES;
 
     public String getSTATUS() {
@@ -56,12 +57,12 @@ public class RegisModel {
         this.PROFILE = PROFILE;
     }
 
-    public List<PARLRNTBean> getPARLRNT() {
-        return PARLRNT;
+    public List<PARENTBean> getPARENT() {
+        return PARENT;
     }
 
-    public void setPARLRNT(List<PARLRNTBean> PARLRNT) {
-        this.PARLRNT = PARLRNT;
+    public void setPARENT(List<PARENTBean> PARENT) {
+        this.PARENT = PARENT;
     }
 
     public List<ACTIVITIESBean> getACTIVITIES() {
@@ -74,16 +75,25 @@ public class RegisModel {
 
     public static class PROFILEBean {
         /**
-         * RG_RUNNO : 1801014113
-         * RG_FNAME : สุดใจ
-         * RG_LNAME : กิจมณีแก้วสกุล
-         * RG_UNIT : A-1220
+         * RG_RUNNO : 1801014259
+         * RG_FNAME : พรเทพ555
+         * RG_LNAME : อ่ำเพชร
+         * RG_UNIT : C-0815
          */
 
         private String RG_RUNNO;
         private String RG_FNAME;
         private String RG_LNAME;
         private String RG_UNIT;
+        private String RG_SMS;
+
+        public String getRG_SMS() {
+            return RG_SMS;
+        }
+
+        public void setRG_SMS(String RG_SMS) {
+            this.RG_SMS = RG_SMS;
+        }
 
         public String getRG_RUNNO() {
             return RG_RUNNO;
@@ -118,12 +128,12 @@ public class RegisModel {
         }
     }
 
-    public static class PARLRNTBean {
+    public static class PARENTBean {
         /**
-         * RG_RUNNO : 1801014114
-         * RG_FNAME : สรวิช
-         * RG_LNAME : รัตนลือชากุล
-         * RG_UNIT : A-1220
+         * RG_RUNNO : 1801014260
+         * RG_FNAME : ชื่อจั๊ม
+         * RG_LNAME : นามสกุลทดสอบ
+         * RG_UNIT : C-0815
          */
 
         private String RG_RUNNO;

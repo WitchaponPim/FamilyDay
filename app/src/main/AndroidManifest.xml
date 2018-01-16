@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SelectAct" />
-        <activity android:name=".ScanQR" />
+        <activity android:name=".ScanQR">
+
+        </activity>
         <activity android:name=".SuccessActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegisterActivity" />

@@ -17,17 +17,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            />
+            layout="@layout/toolbar" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="@dimen/fab_margin"
             android:gravity="center"
-            android:layout_margin="30dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -36,45 +36,167 @@
                 android:orientation="horizontal"
                 android:weightSum="1">
 
-                <EditText
-                    android:id="@+id/edtsms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_marginBottom="20dp"
-                    android:layout_weight="0.80"
-                    android:background="@drawable/edt"
-                    android:drawableLeft="@mipmap/ic_password"
-                    android:hint=" SMS"
-                    android:maxLines="1"
-                    android:textColor="@color/colortext"
-                    android:textColorHint="@color/colortextHint"
-                    android:textSize="20dp" />
-
-                <ImageView
-                    android:id="@+id/qrscan"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="@dimen/edt_height"
-                    android:layout_weight="0.20"
-                    android:src="@drawable/qrscan" />
+                    android:layout_weight=".5"
+                    android:background="@drawable/edt"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_weight=".5"
+                        android:gravity="center_vertical"
+                        android:text="QR CODE :" />
+
+                    <TextView
+                        android:id="@+id/txt_qr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_weight=".5"
+                        android:gravity="center_vertical"
+                        android:text="F30R39" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_weight=".5"
+                    android:background="@drawable/edt"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_weight=".5"
+                        android:gravity="center_vertical"
+                        android:text="ยูนิต :" />
+
+                    <TextView
+                        android:id="@+id/txt_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_weight=".5"
+                        android:gravity="center_vertical"
+                        android:text="A-10101" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
-
-
-            <Button
-                android:id="@+id/btn_submit"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/button"
-                android:backgroundTint="@color/colorButton"
-                android:text="Submit"
-                android:textColor="@color/colorButtonf" />
+                android:layout_marginTop="@dimen/space"
+                android:background="@drawable/edt"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_weight=".3"
+                    android:gravity="center_vertical"
+                    android:text="ชื่อ - สกุล :" />
+
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_weight=".35"
+                    android:gravity="center_vertical"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/txt_lastname"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_weight=".35"
+                    android:gravity="center_vertical"
+                    android:text="Lastname" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space"
+                android:background="@drawable/edt"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_weight=".4"
+                    android:gravity="center_vertical"
+                    android:text="ผู้ติดตามทั้งหมด :" />
+                <TextView
+                    android:id="@+id/txt_follow_total"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_weight=".6"
+                    android:gravity="center"
+                    android:text="Follower" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space"
+                android:background="@drawable/edt"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_weight=".4"
+                    android:gravity="center_vertical"
+                    android:text="กิจกรรมที่ลง :" />
+                <TextView
+                    android:id="@+id/txt_act_total"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_weight=".6"
+                    android:gravity="center"
+                    android:text="Activity" />
+            </LinearLayout>
 
         </LinearLayout>
 
-
     </LinearLayout>
+<LinearLayout
+    android:layout_alignParentBottom="true"
+    android:layout_margin="@dimen/fab_margin"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/edt_height"
+    android:weightSum="1">
+    <Button
+        android:text="ยืนยัน"
+        android:textColor="@color/colorButtonf"
+        android:background="@drawable/button_confirm_s1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"/>
 
+    <Button
+        android:text="ยกเลิก"
+        android:textColor="@color/colorButtonf"
+        android:layout_marginLeft="@dimen/space"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:background="@drawable/button_cancel_s1" />
+
+</LinearLayout>
 
 </RelativeLayout>

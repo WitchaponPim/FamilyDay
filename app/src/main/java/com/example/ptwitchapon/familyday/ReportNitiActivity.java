@@ -16,7 +16,7 @@ import retrofit.Retrofit;
 
 public class ReportNitiActivity extends AppCompatActivity {
     String TAG = "Test";
-    TextView total;
+    TextView total,sum;
     ConnectionManager connect = new ConnectionManager();
     ProgressDialog loadingDialog;
     CallbackListener callbackListener;
@@ -32,7 +32,8 @@ public class ReportNitiActivity extends AppCompatActivity {
             public void onResponse(Report_allModel result, Retrofit retrofit) {
                 report_allModel = result;
                 Log.d(TAG, report_allModel.getSUM()+" / "+ report_allModel.getTOTAL());
-                total.setText(report_allModel.getSUM()+" / "+ report_allModel.getTOTAL());
+                sum.setText(report_allModel.getSUM());
+                total.setText(report_allModel.getTOTAL());
             }
 
             @Override
@@ -52,6 +53,7 @@ public class ReportNitiActivity extends AppCompatActivity {
         };
 
         total = (TextView) findViewById(R.id.total);
+        sum = (TextView) findViewById(R.id.sum) ;
 
 //        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 //

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
@@ -17,6 +18,8 @@ import java.util.List;
 public class Utils {
 
     public static UserModel userModel;
+
+    public static RegisModel regisModel;
 
     public static List<ReportAllModel> reportModel;
 

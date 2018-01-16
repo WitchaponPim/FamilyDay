@@ -7,9 +7,9 @@
     tools:context="com.example.ptwitchapon.familyday.ReportNitiActivity">
 
     <!--<android.support.v4.widget.SwipeRefreshLayout-->
-        <!--android:id="@+id/swipe_refresh_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
+    <!--android:id="@+id/swipe_refresh_layout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->
     <ImageView
         android:layout_width="wrap_content"
@@ -21,26 +21,85 @@
         android:id="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_weight=".3"
             android:gravity="bottom"
             android:text="จำนวนผู้เข้าร่วมกิจกรรม "
             android:textAlignment="center"
             android:textColor="@color/colortext"
             android:textSize="@dimen/textsize_XH" />
 
-        <TextView
-            android:id="@+id/total"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textColor="@color/colortext"
-            android:textSize="@dimen/textsize_XXH" />
+            android:layout_height="0dp"
+            android:layout_weight=".8"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/space"
+                android:layout_weight=".5"
+                android:weightSum="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"
+                    android:gravity="center_horizontal"
+                    android:text="จำนวนคนที่มา"
+                    android:textSize="@dimen/textsize_H" />
+
+                <TextView
+                    android:id="@+id/sum"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".9"
+                    android:gravity="center_horizontal"
+                    android:text="TEST"
+                    android:textSize="@dimen/textsize_XH" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colortext" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/space"
+                android:layout_weight=".5"
+                android:weightSum="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"
+                    android:gravity="center_horizontal"
+                    android:text="จำนวนทั้งหมด"
+                    android:textSize="@dimen/textsize_H" />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".9"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/textsize_XH"
+                    android:text="TEST" />
+
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

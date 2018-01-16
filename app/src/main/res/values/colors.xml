@@ -10,7 +10,8 @@
     <color name="colortextHint">#717173</color>
     <color name="colorButtonf">#eaeef1</color>
     <color name="colorButton">#588fb5</color>
-
+    <color name="colorButtonconfirm">#6ed284</color>
+    <color name="colorButtoncancel">#fd8983</color>
 
 
     <color name="sinch_purple">#ff63029d</color>
