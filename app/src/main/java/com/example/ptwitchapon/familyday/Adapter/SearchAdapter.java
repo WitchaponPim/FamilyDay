@@ -29,9 +29,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         this.context = context;
         this.models = models;
         mStringFilterList = models;
-
     }
-
     @Override
     public int getCount() {
         return models.size();
@@ -79,16 +77,28 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-
             if (constraint != null && constraint.length() > 0) {
                 List<RegisModel.PROFILEBean> filterList = new ArrayList();
                 for (int i = 0; i < mStringFilterList.size(); i++) {
                     if ((mStringFilterList.get(i).getRG_SMS().toUpperCase()).contains(constraint.toString().toUpperCase())) {
                         filterList.add(mStringFilterList.get(i));
                     }
+                    if ((mStringFilterList.get(i).getRG_FNAME().toUpperCase()).contains(constraint.toString().toUpperCase())) {
+                        filterList.add(mStringFilterList.get(i));
+                    }
+                    if ((mStringFilterList.get(i).getRG_LNAME().toUpperCase()).contains(constraint.toString().toUpperCase())) {
+                        filterList.add(mStringFilterList.get(i));
+                    }
+                    if ((mStringFilterList.get(i).getRG_MOBILE().toUpperCase()).contains(constraint.toString().toUpperCase())) {
+                        filterList.add(mStringFilterList.get(i));
+                    }
+                    if ((mStringFilterList.get(i).getNT_TNAME().toUpperCase()).contains(constraint.toString().toUpperCase())) {
+                        filterList.add(mStringFilterList.get(i));
+                    }
                 }
                 results.count = filterList.size();
                 results.values = filterList;
+
             } else {
                 results.count = mStringFilterList.size();
                 results.values = mStringFilterList;
@@ -100,10 +110,8 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         @Override
         protected void publishResults(CharSequence constraint,
                                       FilterResults results) {
-
             models = (List) results.values;
             notifyDataSetChanged();
         }
-
     }
 }

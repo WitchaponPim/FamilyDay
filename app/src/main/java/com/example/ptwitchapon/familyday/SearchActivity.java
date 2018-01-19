@@ -4,6 +4,9 @@ import android.icu.util.UniversalTimeScale;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 
@@ -42,6 +45,15 @@ public class SearchActivity extends AppCompatActivity{
             public boolean onQueryTextChange(String s) {
                 adapter.getFilter().filter(s);
                 return false;
+            }
+        });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
             }
         });
     }

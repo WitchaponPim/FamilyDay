@@ -36,6 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         list.add("ลงทะเบียนวันงาน");
         list.add("ตรวจสอบยอดลงทะเบียนแต่ละนิติ");
         list.add("ตรวจสอบยอดลงทะเบียนทั้งหมด");
+        list.add("ตรวจสอบยอดบวทะเยียนกิจกรรมทั้งหมด");
 
 
 
@@ -63,6 +64,10 @@ public class MenuActivity extends AppCompatActivity {
                     case 3:
                         intent = new Intent(MenuActivity.this, ReportNitiActivity.class);
                         title = list.get(3);
+                        break;
+                    case 4:
+                        intent = new Intent(MenuActivity.this,ReportAllActivity.class);
+                        title = list.get(4);
                         break;
                 }
                 intent.putExtra("title", title);
