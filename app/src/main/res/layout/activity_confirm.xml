@@ -23,13 +23,24 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/fab_margin"
-            android:gravity="center"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/txt_qr_h"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_height"
+                android:textSize="@dimen/textsize_XH"
+                android:gravity="center"
+                android:text="QR CODE :" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/fab_margin"
+                android:gravity="center"
+                android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -143,9 +154,15 @@
                     android:id="@+id/txt_follow_total"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/edt_height"
-                    android:layout_weight=".6"
+                    android:layout_weight=".4"
                     android:gravity="center"
                     android:text="Follower" />
+                <ImageView
+                    android:id="@+id/followpick"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/ic_search" />
             </LinearLayout>
 
             <LinearLayout
@@ -169,12 +186,14 @@
                     android:layout_weight=".6"
                     android:gravity="center"
                     android:text="Activity" />
-            </LinearLayout>
 
-        </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 <LinearLayout
+    android:id="@+id/submit_area2"
     android:layout_alignParentBottom="true"
     android:layout_margin="@dimen/fab_margin"
     android:layout_width="match_parent"

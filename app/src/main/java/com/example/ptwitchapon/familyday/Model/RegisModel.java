@@ -86,6 +86,24 @@ public class RegisModel {
         private String RG_LNAME;
         private String RG_UNIT;
         private String RG_SMS;
+        private String RG_MOBILE;
+        private String NT_TNAME;
+
+        public String getRG_MOBILE() {
+            return RG_MOBILE;
+        }
+
+        public void setRG_MOBILE(String RG_MOBILE) {
+            this.RG_MOBILE = RG_MOBILE;
+        }
+
+        public String getNT_TNAME() {
+            return NT_TNAME;
+        }
+
+        public void setNT_TNAME(String NT_TNAME) {
+            this.NT_TNAME = NT_TNAME;
+        }
 
         public String getRG_SMS() {
             return RG_SMS;

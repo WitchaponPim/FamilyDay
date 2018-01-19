@@ -19,9 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SelectAct" />
-        <activity android:name=".ScanQR">
-
-        </activity>
+        <activity android:name=".ScanQR"></activity>
         <activity android:name=".SuccessActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegisterActivity" />
@@ -30,8 +28,8 @@
         <activity android:name=".ReportAllActivity" />
         <activity android:name=".ReportByNitiActivity" />
         <activity android:name=".SelectSubActivity" />
-        <activity android:name=".ConfirmActivity">
-        </activity>
+        <activity android:name=".ConfirmActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

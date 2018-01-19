@@ -1,5 +1,6 @@
 package com.example.ptwitchapon.familyday;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import retrofit.Retrofit;
 
 public class ScanQR extends AppCompatActivity {
     public static final int REQUEST_QR_SCAN = 4;
+    ProgressDialog progressDialog;
     ConnectionManager connect = new ConnectionManager();
     ScanQrCallbackListener scanQrCallbackListener;
     String TAG = "Poon";
@@ -79,9 +81,9 @@ public class ScanQR extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ScanQR.this,SelectAct.class);
-                startActivity(intent);
-
+                String search = edt.getText().toString();
+                progressDialog = ProgressDialog.show(ScanQR.this,"Please wait", "Loading...",true,false);
+                connect.scanqr(scanQrCallbackListener,search,"","");
             }
         });
 
@@ -110,9 +112,23 @@ public class ScanQR extends AppCompatActivity {
         Intent intent = new Intent(ScanQR.this,ConfirmActivity.class);
         startActivity(intent);
     }
+
+    public void GogoSearch(){
+        Intent intent = new Intent(ScanQR.this,SearchActivity.class);
+        startActivity(intent);
+    }
+
     public void validate(int status){
         switch (status) {
             case 1: GogoConfirm();
+                break;
+            case 3:
+                progressDialog.dismiss();
+                if(Utils.regisModel.getPROFILE().size()>1){
+                    GogoSearch();
+                }else{
+                    GogoConfirm();
+                }
                 break;
             default:Toast.makeText(getApplicationContext(), Utils.regisModel.getSTATUS(), Toast.LENGTH_LONG).show();
                 break;
