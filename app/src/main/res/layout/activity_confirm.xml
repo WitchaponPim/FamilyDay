@@ -183,9 +183,15 @@
                     android:id="@+id/txt_act_total"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/edt_height"
-                    android:layout_weight=".6"
+                    android:layout_weight=".4"
                     android:gravity="center"
                     android:text="Activity" />
+                <ImageView
+                    android:id="@+id/actpick"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/edt_height"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/ic_search" />
 
             </LinearLayout>
             </LinearLayout>
@@ -201,6 +207,7 @@
     android:weightSum="1">
     <Button
         android:text="ยืนยัน"
+        android:id="@+id/savegroup"
         android:textColor="@color/colorButtonf"
         android:background="@drawable/button_confirm_s1"
         android:layout_width="0dp"

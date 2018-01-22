@@ -86,7 +86,6 @@ public class ScanQR extends AppCompatActivity {
                 connect.scanqr(scanQrCallbackListener,search,"","");
             }
         });
-
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,15 +107,17 @@ public class ScanQR extends AppCompatActivity {
             connect.scanqr(scanQrCallbackListener,contents,"","");
         }
     }
-    public void GogoConfirm(){
-        Intent intent = new Intent(ScanQR.this,ConfirmActivity.class);
-        startActivity(intent);
-    }
 
     public void GogoSearch(){
         Intent intent = new Intent(ScanQR.this,SearchActivity.class);
         startActivity(intent);
     }
+
+    public void GogoConfirm(){
+        Intent intent = new Intent(ScanQR.this,ConfirmActivity.class);
+        startActivity(intent);
+    }
+
 
     public void validate(int status){
         switch (status) {

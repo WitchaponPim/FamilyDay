@@ -32,7 +32,5 @@ public class Utils {
         toast.setGravity(Gravity.CENTER | Gravity.BOTTOM, 0, 0);
         toast.show();
 
-
     }
-
 }

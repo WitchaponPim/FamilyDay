@@ -1,12 +1,15 @@
 package com.example.ptwitchapon.familyday.Adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ptwitchapon.familyday.Model.RegisModel;
@@ -20,52 +23,41 @@ import java.util.List;
  * Created by ptwitchapon on 18/1/2561.
  */
 
-public class SearchAdapter extends BaseAdapter implements Filterable {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MenuViewHolder> implements Filterable {
     Context context;
     List<RegisModel.PROFILEBean> models;
     List<RegisModel.PROFILEBean> mStringFilterList;
     ValueFilter valueFilter;
-    public SearchAdapter(Context context,  List<RegisModel.PROFILEBean> models){
+    SearchAdapter.OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(RegisModel.PROFILEBean profileBean, int position);
+
+    }
+
+    public SearchAdapter(Context context, List<RegisModel.PROFILEBean> models,SearchAdapter.OnItemClickListener listener) {
+        Log.d("Poon", "SearchAdapter: "+String.valueOf(models.size()));
         this.context = context;
         this.models = models;
+        this.listener = listener;
         mStringFilterList = models;
     }
+
     @Override
-    public int getCount() {
+    public MenuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_search, parent, false);
+        return new MenuViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(MenuViewHolder holder, int position) {
+        holder.setMenu(models, position);
+    }
+
+    @Override
+    public int getItemCount() {
         return models.size();
     }
-
-    @Override
-    public Object getItem(int i) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        LayoutInflater mInflater =
-                (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if(view == null)
-            view = mInflater.inflate(R.layout.list_search, viewGroup, false);
-
-        TextView sms = (TextView)view.findViewById(R.id.sms);
-        TextView name = (TextView)view.findViewById(R.id.name);
-        TextView niti = (TextView)view.findViewById(R.id.niti);
-        TextView tel = (TextView)view.findViewById(R.id.tel);
-
-        sms.setText(models.get(i).getRG_SMS());
-        name.setText(models.get(i).getRG_FNAME()+" "+models.get(i).getRG_LNAME());
-        niti.setText(models.get(i).getNT_TNAME());
-        tel.setText(models.get(i).getRG_MOBILE());
-
-        return view;
-    }
-
     @Override
     public Filter getFilter() {
         if (valueFilter == null) {
@@ -73,6 +65,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         }
         return valueFilter;
     }
+
     private class ValueFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -113,5 +106,31 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
             models = (List) results.values;
             notifyDataSetChanged();
         }
+    }
+
+    public class MenuViewHolder extends RecyclerView.ViewHolder{
+        TextView sms, name, niti, tel;
+
+        public MenuViewHolder(View itemView) {
+            super(itemView);
+            sms = (TextView) itemView.findViewById(R.id.sms);
+            name = (TextView) itemView.findViewById(R.id.name);
+            niti = (TextView) itemView.findViewById(R.id.niti);
+            tel = (TextView) itemView.findViewById(R.id.tel);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(models.get(getAdapterPosition()),getAdapterPosition());
+                }
+            });
+        }
+
+        public void setMenu(final List<RegisModel.PROFILEBean> model, int position) {
+            sms.setText(model.get(position).getRG_SMS());
+            name.setText(model.get(position).getRG_FNAME() + " " + model.get(position).getRG_LNAME());
+            niti.setText(model.get(position).getNT_TNAME());
+            tel.setText(model.get(position).getRG_MOBILE());
+        }
+
     }
 }

@@ -48,6 +48,7 @@ public class RunrunActivity extends AppCompatActivity {
                 Intent intent = new Intent(RunrunActivity.this,ScanQR.class);
                 String title = list.get(i);
                 intent.putExtra("title", title);
+                intent.putExtra("position",i);
                 startActivity(intent);
             }
         });

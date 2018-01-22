@@ -158,6 +158,25 @@ public class RegisModel {
         private String RG_FNAME;
         private String RG_LNAME;
         private String RG_UNIT;
+        private String RG_SMS;
+        private String RG_PARENT;
+
+
+        public String getRG_SMS() {
+            return RG_SMS;
+        }
+
+        public void setRG_SMS(String RG_SMS) {
+            this.RG_SMS = RG_SMS;
+        }
+
+        public String getRG_PARENT() {
+            return RG_PARENT;
+        }
+
+        public void setRG_PARENT(String RG_PARENT) {
+            this.RG_PARENT = RG_PARENT;
+        }
 
         public String getRG_RUNNO() {
             return RG_RUNNO;

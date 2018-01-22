@@ -64,7 +64,7 @@ public class MenuActivity extends AppCompatActivity {
                     case 3:
                         intent = new Intent(MenuActivity.this, ReportNitiActivity.class);
                         title = list.get(3);
-                        break;
+                    break;
                     case 4:
                         intent = new Intent(MenuActivity.this,ReportAllActivity.class);
                         title = list.get(4);

@@ -31,5 +31,8 @@ public interface APIService {
     @FormUrlEncoded
     @POST("qrChk")
     Call<RegisModel> scan_QR(@Field("qrcode")String qr,@Field("username") String user,@Field("activity") String act_code);
+    @FormUrlEncoded
+    @POST("change_run")
+    Call<String> changRun(@Field("qrcode")String qr);
 
 }

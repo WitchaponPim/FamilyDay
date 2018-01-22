@@ -166,4 +166,31 @@ public class ConnectionManager {
             }
         });
     }
+
+    public void changeRun(final ChangeCallbackListener listener,String qr){
+        Call call = con.changRun(qr);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Response<String> response, Retrofit retrofit) {
+                String result =  response.body();
+                if (result == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( result, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
+            }
+        });
+    }
 }
