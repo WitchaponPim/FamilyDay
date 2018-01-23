@@ -48,6 +48,8 @@
             android:layout_gravity="end"
             android:text="Logout"
             android:textSize="@dimen/textsize"
+            android:background="@drawable/button_s1"
+            android:textColor="@color/colorButtonf"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".1"/>

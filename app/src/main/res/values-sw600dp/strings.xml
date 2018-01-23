@@ -27,15 +27,20 @@
     <string-array name="otherList">
         <item>ธรรมะในสวน</item>
         <item>ดนตรีในสวน</item>
-        <item>เกมส์-คอนเสิร์ต</item>
     </string-array>
     <string-array name="otherList_ID">
         <item>1601000003</item>
         <item>1601000004</item>
-        <item>1601000005</item>
+
     </string-array>
 
+    <string-array name="gameList">
+        <item>เกมส์-คอนเสิร์ต</item>
+    </string-array>
 
+    <string-array name="gameList_ID">
+        <item>1601000005</item>
+    </string-array>
 
     <string-array name="sportList">
         <item>ฟุตซอล</item>
@@ -73,6 +78,6 @@
 
     <string name="act1">กิจกรรมในสวน</string>
     <string name="act2">เดิน-วิ่ง</string>
-    <string name="act3">เกมส์-กีฬาประชาคม</string>
-    <string name="act4">คอนเสิร์ต</string>
+    <string name="act3">กีฬาประชาคม</string>
+    <string name="act4">เกมส์-คอนเสิร์ต</string>
 </resources>

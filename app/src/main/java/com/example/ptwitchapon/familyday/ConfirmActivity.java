@@ -1,6 +1,7 @@
 package com.example.ptwitchapon.familyday;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +18,10 @@ import android.widget.Toast;
 import com.example.ptwitchapon.familyday.API.ChangeCallbackListener;
 import com.example.ptwitchapon.familyday.API.ConnectionManager;
 import com.example.ptwitchapon.familyday.API.LoginCallbackListener;
+import com.example.ptwitchapon.familyday.API.SaveQrCallbackListener;
 import com.example.ptwitchapon.familyday.API.ScanQrCallbackListener;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
+import com.example.ptwitchapon.familyday.Model.SaveModel;
 import com.squareup.okhttp.ResponseBody;
 import com.squareup.okhttp.internal.Util;
 
@@ -30,15 +33,15 @@ import retrofit.Retrofit;
 
 public class ConfirmActivity extends AppCompatActivity {
     String TAG = "Poon";
-    TextView txtqr,txtname,txtlastname,txtunit,txtact,txtfol,txtqr2;
-    Button btn ;
-    ImageView followpick,actpick;
+    TextView txtqr, txtname, txtlastname, txtunit, txtact, txtfol, txtqr2;
+    Button btn;
+    ImageView followpick, actpick;
 
     ArrayList<String> pickList = new ArrayList<>();
     ArrayList<Integer> position = new ArrayList<>();
 
     String select;
-    ArrayList seletedItems=new ArrayList();
+    ArrayList seletedItems = new ArrayList();
     ArrayList<RegisModel.PARENTBean> sel = new ArrayList<>();
 
     String[] actList = new String[Utils.regisModel.getACTIVITIES().size()];
@@ -46,6 +49,7 @@ public class ConfirmActivity extends AppCompatActivity {
     String[] parentQR = new String[Utils.regisModel.getPARENT().size()];
 
     ConnectionManager connect = new ConnectionManager();
+    SaveQrCallbackListener saveQrCallbackListener;
     ScanQrCallbackListener callbackListener;
     ChangeCallbackListener changeCallbackListener;
 
@@ -56,7 +60,7 @@ public class ConfirmActivity extends AppCompatActivity {
         txtqr = (TextView) findViewById(R.id.txt_qr);
         txtqr2 = (TextView) findViewById(R.id.txt_qr_h);
         txtact = (TextView) findViewById(R.id.txt_act_total);
-        txtfol = (TextView)  findViewById(R.id.txt_follow_total);
+        txtfol = (TextView) findViewById(R.id.txt_follow_total);
         txtname = (TextView) findViewById(R.id.txt_name);
         txtlastname = (TextView) findViewById(R.id.txt_lastname);
         txtunit = (TextView) findViewById(R.id.txt_unit);
@@ -64,39 +68,43 @@ public class ConfirmActivity extends AppCompatActivity {
         actpick = (ImageView) findViewById(R.id.actpick);
 
         btn = (Button) findViewById(R.id.savegroup);
-
-        changeCallbackListener = new ChangeCallbackListener() {
+        saveQrCallbackListener = new SaveQrCallbackListener() {
             @Override
-            public void onResponse(String result, Retrofit retrofit) {
-                Log.d(TAG, "onResponse: "+result);
-                Utils.toast(getApplicationContext(),result);
+            public void onResponse(List<SaveModel> saveModels, Retrofit retrofit) {
+                Utils.saveModel = saveModels;
+                Utils.toast(getApplicationContext(),Utils.saveModel.get(0).getSTATUS_ID()+" "+Utils.saveModel.get(0).getSTATUS());
+                Log.d(TAG, "onResponse: ");
+                the_end();
+
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d(TAG, "onFailure: ");
+                Log.d(TAG, "onFailure: "+t.toString());
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
-                Log.d(TAG, "onBodyError: ");
+                Log.d(TAG, "onBodyError: "+responseBody.toString());
             }
 
             @Override
             public void onBodyErrorIsNull() {
-                Log.d(TAG, "onBodyErrorIsNull: ");
+
             }
         };
 
         callbackListener = new ScanQrCallbackListener() {
             @Override
             public void onResponse(RegisModel regisModel, Retrofit retrofit) {
-                Log.d(TAG, "onResponse: "+regisModel.getSTATUS());
+                Utils.regisModel = regisModel;
+                refresh();
+                Log.d(TAG, "onResponse: " + regisModel.getSTATUS());
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d(TAG, "onFailure: ");
+                Log.d(TAG, "onFailure: "+ t);
             }
 
             @Override
@@ -109,6 +117,32 @@ public class ConfirmActivity extends AppCompatActivity {
                 Log.d(TAG, "onBodyErrorIsNull: ");
             }
         };
+
+        changeCallbackListener = new ChangeCallbackListener() {
+            @Override
+            public void onResponse(String result, Retrofit retrofit) {
+                Log.d(TAG, "onResponse: " + result);
+                Utils.toast(getApplicationContext(), result);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.d(TAG, "onFailure: "+t);
+                connect.scanqr(callbackListener,Utils.regisModel.getPROFILE().get(0).getRG_SMS(),null,null);
+            }
+
+            @Override
+            public void onBodyError(ResponseBody responseBody) {
+                Log.d(TAG, "onBodyError: ");
+            }
+
+            @Override
+            public void onBodyErrorIsNull() {
+                Log.d(TAG, "onBodyErrorIsNull: ");
+            }
+        };
+
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +152,7 @@ public class ConfirmActivity extends AppCompatActivity {
         });
 
         txtqr.setText(Utils.regisModel.getPROFILE().get(0).getRG_SMS());
-        txtqr2.setText("QR CODE : "+Utils.regisModel.getPROFILE().get(0).getRG_SMS());
+        txtqr2.setText("QR CODE : " + Utils.regisModel.getPROFILE().get(0).getRG_SMS());
         txtname.setText(Utils.regisModel.getPROFILE().get(0).getRG_FNAME());
         txtlastname.setText(Utils.regisModel.getPROFILE().get(0).getRG_LNAME());
         txtact.setText(String.valueOf(Utils.regisModel.getACTIVITIES().size()));
@@ -150,10 +184,9 @@ public class ConfirmActivity extends AppCompatActivity {
         });
 
 
-
     }
 
-    public void followSelect(String[] items){
+    public void followSelect(String[] items) {
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("เลือกผู้ติดตามที่มาแสดงตน");
@@ -180,18 +213,18 @@ public class ConfirmActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         //  Your code when user clicked on OK
                         //  You can write the code  to save the selected item here
-                        for (int i = 0;i<seletedItems.size();i++) {
+                        for (int i = 0; i < seletedItems.size(); i++) {
                             Log.d(TAG, "onClick: " + seletedItems.get(i));
 //                            pickList.add(String.valueOf(Utils.regisModel.getPARENT().get((Integer) seletedItems.get(i)).getRG_SMS()));
-                              position.add((Integer) seletedItems.get(i));
+                            position.add((Integer) seletedItems.get(i));
                         }
 
-                        for (int l = 0;l<position.size();l++){
+                        for (int l = 0; l < position.size(); l++) {
                             pickList.add(String.valueOf(Utils.regisModel.getPARENT().get(position.get(l)).getRG_SMS()));
                         }
 
-                        for(int k = 0;k<pickList.size();k++){
-                            Log.d(TAG, "onClick: "+pickList.get(k));
+                        for (int k = 0; k < pickList.size(); k++) {
+                            Log.d(TAG, "onClick: " + pickList.get(k));
                         }
                     }
                 })
@@ -207,7 +240,7 @@ public class ConfirmActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void activitiesSelect(final String[] items){
+    public void activitiesSelect(final String[] items) {
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(ConfirmActivity.this);
         builder.setTitle("กิจกรรมที่สามารถลงได้ทั้งหมด");
@@ -215,9 +248,17 @@ public class ConfirmActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String selected = items[which];
-                Toast.makeText(getApplicationContext(), "คุณชอบ " +selected, Toast.LENGTH_SHORT).show();
-                if (selected.equals(getResources().getStringArray(R.array.runList)[0])||selected.equals(getResources().getStringArray(R.array.runList)[1])){
-                    changeRun();
+                Toast.makeText(getApplicationContext(), selected, Toast.LENGTH_SHORT).show();
+//                if (selected.equals(getResources().getStringArray(R.array.runList)[0])||selected.equals(getResources().getStringArray(R.array.runList)[1])){
+//                    changeRun();
+//                }
+                switch (items[which]) {
+                    case "เดิน-วิ่ง 2.5 กม.": changeRun(1);
+                        break;
+                    case "เดิน-วิ่ง 5.0 กม.": changeRun(0);
+                        break;
+                    default:
+                        break;
                 }
             }
         });
@@ -226,47 +267,45 @@ public class ConfirmActivity extends AppCompatActivity {
 
         builder.show();
     }
-    public void createList(){
-        for (int i=0;i<Utils.regisModel.getPARENT().size();i++){
-            followList[i] = Utils.regisModel.getPARENT().get(i).getRG_FNAME()+ " " +Utils.regisModel.getPARENT().get(i).getRG_LNAME();
+
+    public void createList() {
+        for (int i = 0; i < Utils.regisModel.getPARENT().size(); i++) {
+            followList[i] = Utils.regisModel.getPARENT().get(i).getRG_FNAME() + " " + Utils.regisModel.getPARENT().get(i).getRG_LNAME();
         }
         followSelect(followList);
     }
 
-    public void createAct(){
-        for(int i=0;i<Utils.regisModel.getACTIVITIES().size();i++){
+    public void createAct() {
+        for (int i = 0; i < Utils.regisModel.getACTIVITIES().size(); i++) {
             actList[i] = Utils.regisModel.getACTIVITIES().get(i).getET_TNAME();
         }
         activitiesSelect(actList);
     }
 
 
-    public void save(){
+    public void save() {
         StringBuffer sb = new StringBuffer(Utils.regisModel.getPROFILE().get(0).getRG_SMS());
-        for(int i = 0;i<pickList.size();i++){
-            sb.append(","+pickList.get(i));
+        for (int i = 0; i < pickList.size(); i++) {
+            sb.append("," + pickList.get(i));
         }
 
-        Log.d(TAG, "save: "+sb+" "+Utils.userModel.getProfile().getUsername());
+        Log.d(TAG, "save: " + sb + " " + Utils.userModel.getProfile().getUsername()+" "+Utils.act_id );
+
+        connect.saveqr(saveQrCallbackListener,sb.toString(),Utils.userModel.getProfile().getUsername(),Utils.act_id);
 
     }
 
-    public void changeRun(){
+    public void changeRun(int i) {
 
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(ConfirmActivity.this);
         builder.setTitle("เปลี่ยนประเภท");
-        builder.setSingleChoiceItems(getResources().getStringArray(R.array.runList), 0, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-               select = getResources().getStringArray(R.array.runList)[which];
-            }
-        });
+        builder.setMessage("ต้องการเปลี่ยนประเภทการวิ่งเป็น \n"+getResources().getStringArray(R.array.runList)[i]+" หรือไม่");
         builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // ส่วนนี้สำหรับเซฟค่าลง database หรือ SharedPreferences.
-                connect.changeRun(changeCallbackListener,Utils.regisModel.getPROFILE().get(0).getRG_SMS());
+                connect.changeRun(changeCallbackListener, Utils.regisModel.getPROFILE().get(0).getRG_SMS());
 
                 dialog.dismiss();
             }
@@ -274,8 +313,16 @@ public class ConfirmActivity extends AppCompatActivity {
 
         builder.setNegativeButton("ยกเลิก", null);
         builder.create();
-
-// สุดท้ายอย่าลืม show() ด้วย
         builder.show();
+    }
+    public void refresh(){
+        Intent intent = new Intent(ConfirmActivity.this,ConfirmActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    public void the_end(){
+        Intent intent = new Intent(ConfirmActivity.this,SuccessActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

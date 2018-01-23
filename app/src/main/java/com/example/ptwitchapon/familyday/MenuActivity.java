@@ -1,6 +1,8 @@
 package com.example.ptwitchapon.familyday;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,8 @@ import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
 
+    private SharedPreferences mPrefs;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +33,15 @@ public class MenuActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView1);
         Button logout = (Button) findViewById(R.id.btn_logout);
         text.setText("User : " + Utils.userModel.getProfile().getFirst_name());
-
+        mPrefs = getSharedPreferences("prefs_user", Context.MODE_PRIVATE);
+        mEditor = mPrefs.edit();
         //เมนู
         final ArrayList<String> list = new ArrayList<>();
         list.add("ลงทะเบียนเข้างาน [ScanQR]");
         list.add("ลงทะเบียนวันงาน");
         list.add("ตรวจสอบยอดลงทะเบียนแต่ละนิติ");
         list.add("ตรวจสอบยอดลงทะเบียนทั้งหมด");
-        list.add("ตรวจสอบยอดบวทะเยียนกิจกรรมทั้งหมด");
+        list.add("ตรวจสอบยอดลงทะเบียนกิจกรรมทั้งหมด");
 
 
 
@@ -77,8 +82,12 @@ public class MenuActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mEditor.clear();
+                mEditor.commit();
                 Utils.userModel = null;
-                onBackPressed();
+                Intent b = new Intent(MenuActivity.this,LoginActivity.class);
+                startActivity(b);
+                finish();
             }
         });
     }

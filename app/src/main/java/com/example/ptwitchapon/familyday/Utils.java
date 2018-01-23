@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
+import com.example.ptwitchapon.familyday.Model.SaveModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
 
 import java.util.List;
@@ -18,6 +19,10 @@ import java.util.List;
  */
 
 public class Utils {
+
+    public static String act_id;
+
+    public static List<SaveModel> saveModel;
 
     public static UserModel userModel;
 

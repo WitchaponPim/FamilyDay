@@ -130,6 +130,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MenuViewHo
             name.setText(model.get(position).getRG_FNAME() + " " + model.get(position).getRG_LNAME());
             niti.setText(model.get(position).getNT_TNAME());
             tel.setText(model.get(position).getRG_MOBILE());
+
         }
 
     }

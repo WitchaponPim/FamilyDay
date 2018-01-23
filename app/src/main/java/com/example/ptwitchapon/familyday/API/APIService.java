@@ -4,6 +4,7 @@ import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.Report_allModel;
+import com.example.ptwitchapon.familyday.Model.SaveModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
 
 import java.util.List;
@@ -34,5 +35,10 @@ public interface APIService {
     @FormUrlEncoded
     @POST("change_run")
     Call<String> changRun(@Field("qrcode")String qr);
+
+    @FormUrlEncoded
+    @POST("saveActivity")
+    Call<List<SaveModel>> save_QR(@Field("qrcode")String qr, @Field("username") String user, @Field("activity") String act_code);
+
 
 }

@@ -51,28 +51,34 @@ public class SelectAct extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         String head = null;
         String lists[] = null;
+        String lists_ID[] = null;
         Intent intent = null;
         ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> list_id = new ArrayList<>();
         switch (v.getId()) {
             case R.id.act1:
                 head = act1.getText().toString();
-                intent = new Intent(SelectAct.this,ScanQR.class);
+                intent = new Intent(SelectAct.this,RunrunActivity.class);
                 lists = getResources().getStringArray(R.array.otherList);
+                lists_ID = getResources().getStringArray(R.array.otherList_ID);
                 break;
             case R.id.act2:
                 head = act2.getText().toString();
                 intent = new Intent(SelectAct.this,RunrunActivity.class);
                 lists = getResources().getStringArray(R.array.runList);
+                lists_ID = getResources().getStringArray(R.array.runList_ID);
                 break;
             case R.id.act3:
                 head = act3.getText().toString();
                 intent = new Intent(SelectAct.this,RunrunActivity.class);
                 lists = getResources().getStringArray(R.array.sportList);
+                lists_ID = getResources().getStringArray(R.array.sportList_ID);
                 break;
             case R.id.act4:
                 head = act4.getText().toString();
                 intent = new Intent(SelectAct.this,ScanQR.class);
-                lists = getResources().getStringArray(R.array.otherList);
+                lists = getResources().getStringArray(R.array.gameList);
+                lists_ID = getResources().getStringArray(R.array.gameList_ID);
                 break;
             default:
                 break;
@@ -80,8 +86,12 @@ public class SelectAct extends AppCompatActivity implements View.OnClickListener
         for (int i =0;i<lists.length;i++){
             list.add(lists[i]);
         }
+        for (int l=0;l<lists_ID.length;l++){
+            list_id.add(lists_ID[l]);
+        }
         intent.putExtra("title", head);
         intent.putExtra("list",list);
+        intent.putExtra("list_id",list_id);
         startActivity(intent);
     }
 }

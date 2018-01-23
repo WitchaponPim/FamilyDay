@@ -19,11 +19,13 @@ import java.util.Arrays;
 public class RunrunActivity extends AppCompatActivity {
         String TAG = "Poon";
         ArrayList<String> list;
+        ArrayList<String> list_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_runrun);
         list = getIntent().getStringArrayListExtra("list");
+        list_id = getIntent().getStringArrayListExtra("list_id");
 
         MenuAdapter adapter = new MenuAdapter(getApplicationContext(), list);
         ListView listView = (ListView) findViewById(R.id.listRunrun);
@@ -47,8 +49,9 @@ public class RunrunActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(RunrunActivity.this,ScanQR.class);
                 String title = list.get(i);
+                String actID = list_id.get(i);
                 intent.putExtra("title", title);
-                intent.putExtra("position",i);
+                intent.putExtra("actID",actID);
                 startActivity(intent);
             }
         });

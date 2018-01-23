@@ -4,6 +4,7 @@ import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.Report_allModel;
+import com.example.ptwitchapon.familyday.Model.SaveModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
 import com.squareup.okhttp.ResponseBody;
 
@@ -169,10 +170,10 @@ public class ConnectionManager {
 
     public void changeRun(final ChangeCallbackListener listener,String qr){
         Call call = con.changRun(qr);
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
-                String result =  response.body();
+            public void onResponse(Response response, Retrofit retrofit) {
+                String result = String.valueOf(response);
                 if (result == null) {
                     //404 or the response cannot be converted to User.
                     ResponseBody responseBody = response.errorBody();
@@ -184,6 +185,34 @@ public class ConnectionManager {
                 } else {
                     //200
                     listener.onResponse( result, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                    listener.onFailure(t);
+            }
+        });
+
+    }
+
+    public void saveqr(final SaveQrCallbackListener listener,String qr,String user ,String act_id){
+        Call call = con.save_QR(qr,user,act_id);
+        call.enqueue(new Callback<List<SaveModel>>() {
+            @Override
+            public void onResponse(Response<List<SaveModel>> response, Retrofit retrofit) {
+                List<SaveModel> saveModel =  response.body();
+                if (saveModel == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( saveModel, retrofit);
                 }
             }
 

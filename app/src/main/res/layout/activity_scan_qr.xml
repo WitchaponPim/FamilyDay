@@ -23,13 +23,33 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"/>
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_margin="@dimen/textsize_XH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                >
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/edt_height"
+                    android:text="ACT ID : "
+                    android:textSize="@dimen/textsize_H"/>
+                <TextView
+                    android:id="@+id/actID"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/edt_height"
+                    android:text="XXXXXXXXXX"
+                    android:textSize="@dimen/textsize_XH"/>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,6 +57,35 @@
                 android:gravity="center"
                 android:layout_margin="@dimen/fab_margin"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/countArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/space"
+                    android:weightSum="1"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"
+                    >
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:padding="@dimen/space"
+                        android:layout_weight=".4"
+                        android:inputType="number"
+                        android:text="1"
+                        android:background="@drawable/edt"/>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginLeft="@dimen/space"
+                        android:text="นับ"
+                        android:textColor="@color/colorButtonf"
+                        android:layout_weight=".2"
+                        android:background="@drawable/button_s1"/>
+
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -79,7 +128,7 @@
                     android:textColor="@color/colorButtonf" />
 
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
 
 
