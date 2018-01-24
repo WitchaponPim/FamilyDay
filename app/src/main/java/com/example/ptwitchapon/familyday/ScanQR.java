@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ptwitchapon.familyday.API.ConnectionManager;
+import com.example.ptwitchapon.familyday.API.CountCallbackListener;
 import com.example.ptwitchapon.familyday.API.ScanQrCallbackListener;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.squareup.okhttp.ResponseBody;
@@ -29,10 +30,11 @@ public class ScanQR extends AppCompatActivity {
     ProgressDialog progressDialog;
     ConnectionManager connect = new ConnectionManager();
     ScanQrCallbackListener scanQrCallbackListener;
+    CountCallbackListener countCallbackListener;
     String TAG = "Poon",title,actID;
     TextView act_id;
-    EditText edt;
-    Button btn;
+    EditText edt,total;
+    Button btn,btn_count;
     LinearLayout count;
 
     @Override
@@ -43,6 +45,7 @@ public class ScanQR extends AppCompatActivity {
         scanQrCallbackListener = new ScanQrCallbackListener() {
             @Override
             public void onResponse(RegisModel regisModel, Retrofit retrofit) {
+                Utils.loca = title;
                 Utils.act_id = actID;
                 Utils.regisModel = regisModel;
                 validate(Integer.valueOf(Utils.regisModel.getSTATUS_ID()));
@@ -64,6 +67,31 @@ public class ScanQR extends AppCompatActivity {
                 Log.d(TAG, "onBodyErrorIsNull: ");
             }
         };
+
+        countCallbackListener = new CountCallbackListener() {
+            @Override
+            public void onResponse(String result, Retrofit retrofit) {
+
+                Utils.toast(getApplicationContext(),result);
+                Log.d(TAG, "onResponse: "+result);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Utils.toast(getApplicationContext(),t.toString());
+                Log.d(TAG, "onFailure: "+t);
+            }
+
+            @Override
+            public void onBodyError(ResponseBody responseBody) {
+
+            }
+
+            @Override
+            public void onBodyErrorIsNull() {
+
+            }
+        };
         title = getIntent().getStringExtra("title");
         actID = getIntent().getStringExtra("actID");
         if (title==null||actID==null){
@@ -72,9 +100,12 @@ public class ScanQR extends AppCompatActivity {
         }
         ImageView img = (ImageView) findViewById(R.id.qrscan);
         edt = (EditText) findViewById(R.id.edtsms) ;
+        total = (EditText) findViewById(R.id.total);
         btn = (Button) findViewById(R.id.btn_submit);
+        btn_count = (Button)findViewById(R.id.countbtn);
         act_id = (TextView) findViewById(R.id.actID);
         count = (LinearLayout) findViewById(R.id.countArea);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(title);
@@ -93,6 +124,12 @@ public class ScanQR extends AppCompatActivity {
         });
         if(title.equals("ธรรมะในสวน")){
             count.setVisibility(LinearLayout.VISIBLE);
+            btn_count.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    connect.count(countCallbackListener,total.getText().toString(),Utils.userModel.getProfile().getUsername());
+                }
+            });
         }
 
 
@@ -132,11 +169,13 @@ public class ScanQR extends AppCompatActivity {
     public void GogoSearch(){
         Intent intent = new Intent(ScanQR.this,SearchActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void GogoConfirm(){
         Intent intent = new Intent(ScanQR.this,ConfirmActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

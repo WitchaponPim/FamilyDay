@@ -29,7 +29,7 @@
             android:textStyle="bold"
             android:text="SMS"
             android:textSize="@dimen/textsize_XH"
-            android:textColor="@color/colorButton" />
+            android:textColor="#000000" />
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="@dimen/space"
@@ -75,6 +75,14 @@
             android:layout_height="wrap_content"
             android:layout_weight=".6"
             android:text="Tel."
+            android:textSize="@dimen/textsize_H"
+            android:textColor="@color/colorButton" />
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:text="Type"
             android:textSize="@dimen/textsize_H"
             android:textColor="@color/colorButton" />
     </LinearLayout>

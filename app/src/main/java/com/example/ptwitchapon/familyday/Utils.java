@@ -22,6 +22,8 @@ public class Utils {
 
     public static String act_id;
 
+    public static String loca;
+
     public static List<SaveModel> saveModel;
 
     public static UserModel userModel;

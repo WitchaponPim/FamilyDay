@@ -39,6 +39,8 @@ public interface APIService {
     @FormUrlEncoded
     @POST("saveActivity")
     Call<List<SaveModel>> save_QR(@Field("qrcode")String qr, @Field("username") String user, @Field("activity") String act_code);
-
+    @FormUrlEncoded
+    @POST("count_tamma")
+    Call<String> count_tamma(@Field("count")String count, @Field("username") String user);
 
 }

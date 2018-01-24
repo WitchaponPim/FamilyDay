@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,8 @@ import com.example.ptwitchapon.familyday.Model.SaveModel;
 import com.squareup.okhttp.ResponseBody;
 import com.squareup.okhttp.internal.Util;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +36,10 @@ import retrofit.Retrofit;
 
 public class ConfirmActivity extends AppCompatActivity {
     String TAG = "Poon";
-    TextView txtqr, txtname, txtlastname, txtunit, txtact, txtfol, txtqr2;
+    TextView txtqr, txtname, txtlastname, txtunit, txtact, txtfol, txtqr2,alert;
     Button btn;
     ImageView followpick, actpick;
+    LinearLayout btnarea;
 
     ArrayList<String> pickList = new ArrayList<>();
     ArrayList<Integer> position = new ArrayList<>();
@@ -57,6 +61,7 @@ public class ConfirmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
+        btnarea = (LinearLayout) findViewById(R.id.submit_area2);
         txtqr = (TextView) findViewById(R.id.txt_qr);
         txtqr2 = (TextView) findViewById(R.id.txt_qr_h);
         txtact = (TextView) findViewById(R.id.txt_act_total);
@@ -64,10 +69,12 @@ public class ConfirmActivity extends AppCompatActivity {
         txtname = (TextView) findViewById(R.id.txt_name);
         txtlastname = (TextView) findViewById(R.id.txt_lastname);
         txtunit = (TextView) findViewById(R.id.txt_unit);
+        alert = (TextView) findViewById(R.id.txt_alert);
         followpick = (ImageView) findViewById(R.id.followpick);
         actpick = (ImageView) findViewById(R.id.actpick);
-
         btn = (Button) findViewById(R.id.savegroup);
+        check_act();
+
         saveQrCallbackListener = new SaveQrCallbackListener() {
             @Override
             public void onResponse(List<SaveModel> saveModels, Retrofit retrofit) {
@@ -324,5 +331,25 @@ public class ConfirmActivity extends AppCompatActivity {
         Intent intent = new Intent(ConfirmActivity.this,SuccessActivity.class);
         startActivity(intent);
         finish();
+    }
+    public void check_act(){
+
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0 ;i<Utils.regisModel.getACTIVITIES().size();i++){
+            list.add(Utils.regisModel.getACTIVITIES().get(i).getET_TNAME());
+            Log.d(TAG, "check_act: "+list.get(i)+ " : " + Utils.loca);
+        }
+
+        if (list.contains(Utils.loca)) {
+            txtqr2.setVisibility(View.VISIBLE);
+            btnarea.setVisibility(View.VISIBLE);
+            alert.setVisibility(View.GONE);
+        }else {
+            alert.setText("ไม่ได้ลงทะเบียนกิจกรรม "+ Utils.loca + " ไว้");
+            alert.setVisibility(View.VISIBLE);
+            txtqr2.setVisibility(View.INVISIBLE);
+            btnarea.setVisibility(View.INVISIBLE);
+        }
     }
 }

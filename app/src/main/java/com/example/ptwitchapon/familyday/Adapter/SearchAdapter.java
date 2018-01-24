@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.R;
+import com.example.ptwitchapon.familyday.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MenuViewHo
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
+            ArrayList<String> list = new ArrayList<>();
+
+
             if (constraint != null && constraint.length() > 0) {
                 List<RegisModel.PROFILEBean> filterList = new ArrayList();
                 for (int i = 0; i < mStringFilterList.size(); i++) {
@@ -79,15 +83,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MenuViewHo
                     if ((mStringFilterList.get(i).getRG_FNAME().toUpperCase()).contains(constraint.toString().toUpperCase())) {
                         filterList.add(mStringFilterList.get(i));
                     }
-                    if ((mStringFilterList.get(i).getRG_LNAME().toUpperCase()).contains(constraint.toString().toUpperCase())) {
-                        filterList.add(mStringFilterList.get(i));
-                    }
+
                     if ((mStringFilterList.get(i).getRG_MOBILE().toUpperCase()).contains(constraint.toString().toUpperCase())) {
                         filterList.add(mStringFilterList.get(i));
                     }
                     if ((mStringFilterList.get(i).getNT_TNAME().toUpperCase()).contains(constraint.toString().toUpperCase())) {
                         filterList.add(mStringFilterList.get(i));
                     }
+                    if ((mStringFilterList.get(i).getRG_PARENT().toUpperCase()).contains(constraint.toString().toUpperCase())) {
+                        filterList.add(mStringFilterList.get(i));
+                    }
+
                 }
                 results.count = filterList.size();
                 results.values = filterList;
@@ -109,7 +115,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MenuViewHo
     }
 
     public class MenuViewHolder extends RecyclerView.ViewHolder{
-        TextView sms, name, niti, tel;
+        TextView sms, name, niti, tel,type;
 
         public MenuViewHolder(View itemView) {
             super(itemView);
@@ -117,6 +123,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MenuViewHo
             name = (TextView) itemView.findViewById(R.id.name);
             niti = (TextView) itemView.findViewById(R.id.niti);
             tel = (TextView) itemView.findViewById(R.id.tel);
+            type = (TextView) itemView.findViewById(R.id.type);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -127,9 +134,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MenuViewHo
 
         public void setMenu(final List<RegisModel.PROFILEBean> model, int position) {
             sms.setText(model.get(position).getRG_SMS());
-            name.setText(model.get(position).getRG_FNAME() + " " + model.get(position).getRG_LNAME());
+            name.setText(model.get(position).getRG_FNAME());
             niti.setText(model.get(position).getNT_TNAME());
             tel.setText(model.get(position).getRG_MOBILE());
+            type.setText(model.get(position).getRG_PARENT());
+
+            if(model.get(position).getRG_PARENT().equals("เจ้าของ")) {
+                type.setTextColor(context.getResources().getColor(R.color.colorHead));
+            }else {
+                type.setTextColor(context.getResources().getColor(R.color.colorFollow));
+            }
 
         }
 

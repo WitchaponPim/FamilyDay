@@ -222,4 +222,31 @@ public class ConnectionManager {
             }
         });
     }
+
+    public void count(final CountCallbackListener listener,String count,String user){
+        Call call = con.count_tamma(count,user);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Response response, Retrofit retrofit) {
+                String result = String.valueOf(response);
+                if (result == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( result, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
+            }
+        });
+    }
 }

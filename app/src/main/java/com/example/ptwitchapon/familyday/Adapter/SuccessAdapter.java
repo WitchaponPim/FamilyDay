@@ -1,6 +1,7 @@
 package com.example.ptwitchapon.familyday.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ import java.util.List;
  * Created by ptwitchapon on 23/1/2561.
  */
 
-public class SuccessAdapter extends RecyclerView.Adapter<SuccessAdapter.MenuViewHolder>{
+public class SuccessAdapter extends RecyclerView.Adapter<SuccessAdapter.MenuViewHolder> {
     Context context;
     List<SaveModel> models;
     SuccessAdapter.OnItemClickListener listener;
@@ -53,19 +54,19 @@ public class SuccessAdapter extends RecyclerView.Adapter<SuccessAdapter.MenuView
         return models.size();
     }
 
-    public class MenuViewHolder extends RecyclerView.ViewHolder{
-        TextView sms, name, lname, stat;
+    public class MenuViewHolder extends RecyclerView.ViewHolder {
+        TextView sms, name, stat;
 
         public MenuViewHolder(View itemView) {
             super(itemView);
             sms = (TextView) itemView.findViewById(R.id.sms);
             name = (TextView) itemView.findViewById(R.id.Name);
-            lname = (TextView) itemView.findViewById(R.id.Lastname);
-            stat= (TextView) itemView.findViewById(R.id.status);
+
+            stat = (TextView) itemView.findViewById(R.id.status);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(models.get(getAdapterPosition()),getAdapterPosition());
+                    listener.onItemClick(models.get(getAdapterPosition()), getAdapterPosition());
                 }
             });
         }
@@ -73,8 +74,17 @@ public class SuccessAdapter extends RecyclerView.Adapter<SuccessAdapter.MenuView
         public void setMenu(final List<SaveModel> model, int position) {
             sms.setText(model.get(position).getPROFILE().get(0).getRG_SMS());
             name.setText(model.get(position).getPROFILE().get(0).getRG_FNAME());
-            lname.setText(model.get(position).getPROFILE().get(0).getRG_LNAME());
+
             stat.setText(model.get(position).getSTATUS());
+
+            switch (Integer.valueOf(model.get(position).getSTATUS_ID())) {
+                case 1:stat.setTextColor(context.getResources().getColor(R.color.colorButtonconfirm));
+                    break;
+                case 2:stat.setTextColor(context.getResources().getColor(R.color.colorButtoncancel));
+                    break;
+                default:
+                    break;
+            }
 
         }
 

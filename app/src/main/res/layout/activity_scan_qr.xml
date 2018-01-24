@@ -37,14 +37,14 @@
                 <TextView
 
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/edt_height"
+                    android:layout_height="wrap_content"
                     android:text="ACT ID : "
                     android:textSize="@dimen/textsize_H"/>
                 <TextView
                     android:id="@+id/actID"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/edt_height"
+                    android:layout_height="wrap_content"
                     android:text="XXXXXXXXXX"
                     android:textSize="@dimen/textsize_XH"/>
 
@@ -69,6 +69,7 @@
                     android:visibility="gone"
                     >
                     <EditText
+                        android:id="@+id/total"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
                         android:padding="@dimen/space"
@@ -77,6 +78,7 @@
                         android:text="1"
                         android:background="@drawable/edt"/>
                     <Button
+                        android:id="@+id/countbtn"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
                         android:layout_marginLeft="@dimen/space"

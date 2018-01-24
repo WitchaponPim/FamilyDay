@@ -29,9 +29,9 @@ public class RunrunActivity extends AppCompatActivity {
 
         MenuAdapter adapter = new MenuAdapter(getApplicationContext(), list);
         ListView listView = (ListView) findViewById(R.id.listRunrun);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getIntent().getStringExtra("title"));
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -53,6 +53,7 @@ public class RunrunActivity extends AppCompatActivity {
                 intent.putExtra("title", title);
                 intent.putExtra("actID",actID);
                 startActivity(intent);
+                finish();
             }
         });
     }

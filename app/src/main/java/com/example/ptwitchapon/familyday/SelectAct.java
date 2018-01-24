@@ -40,7 +40,7 @@ public class SelectAct extends AppCompatActivity implements View.OnClickListener
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                back();
             }
         });
 
@@ -93,5 +93,14 @@ public class SelectAct extends AppCompatActivity implements View.OnClickListener
         intent.putExtra("list",list);
         intent.putExtra("list_id",list_id);
         startActivity(intent);
+
+    }
+
+    public  void back(){
+        super.onBackPressed();
+    }
+    @Override
+    public void onBackPressed() {
+
     }
 }

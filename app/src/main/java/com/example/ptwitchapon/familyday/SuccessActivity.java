@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 
 import com.example.ptwitchapon.familyday.API.ConnectionManager;
 import com.example.ptwitchapon.familyday.API.ScanQrCallbackListener;
@@ -25,6 +27,20 @@ public class SuccessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("ผลการลงทะเบียน");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         list = (RecyclerView) findViewById(R.id.list_success);
         adapter = new SuccessAdapter(getApplicationContext(), Utils.saveModel, new SuccessAdapter.OnItemClickListener() {
             @Override

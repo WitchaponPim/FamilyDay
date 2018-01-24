@@ -101,6 +101,7 @@ public class SearchActivity extends AppCompatActivity{
     public void GogoConfirm(){
         Intent intent = new Intent(SearchActivity.this,ConfirmActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

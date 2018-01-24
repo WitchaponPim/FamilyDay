@@ -20,11 +20,10 @@ public class RegisModel {
 
     private String STATUS;
     private String STATUS_ID;
-    private String LOCATION;
     private List<PROFILEBean> PROFILE;
     private List<PARENTBean> PARENT;
     private List<ACTIVITIESBean> ACTIVITIES;
-
+    private String LOCATION;
     public String getSTATUS() {
         return STATUS;
     }
@@ -39,14 +38,6 @@ public class RegisModel {
 
     public void setSTATUS_ID(String STATUS_ID) {
         this.STATUS_ID = STATUS_ID;
-    }
-
-    public String getLOCATION() {
-        return LOCATION;
-    }
-
-    public void setLOCATION(String LOCATION) {
-        this.LOCATION = LOCATION;
     }
 
     public List<PROFILEBean> getPROFILE() {
@@ -88,6 +79,15 @@ public class RegisModel {
         private String RG_SMS;
         private String RG_MOBILE;
         private String NT_TNAME;
+        private String RG_PARENT;
+
+        public String getRG_PARENT() {
+            return RG_PARENT;
+        }
+
+        public void setRG_PARENT(String RG_PARENT) {
+            this.RG_PARENT = RG_PARENT;
+        }
 
         public String getRG_MOBILE() {
             return RG_MOBILE;
@@ -225,5 +225,12 @@ public class RegisModel {
         public void setET_TNAME(String ET_TNAME) {
             this.ET_TNAME = ET_TNAME;
         }
+    }
+    public String getLOCATION() {
+        return LOCATION;
+    }
+
+    public void setLOCATION(String LOCATION) {
+        this.LOCATION = LOCATION;
     }
 }
