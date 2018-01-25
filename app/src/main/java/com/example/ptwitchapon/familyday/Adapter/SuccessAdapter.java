@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ptwitchapon.familyday.Model.RegisModel;
@@ -55,14 +56,18 @@ public class SuccessAdapter extends RecyclerView.Adapter<SuccessAdapter.MenuView
     }
 
     public class MenuViewHolder extends RecyclerView.ViewHolder {
-        TextView sms, name, stat;
+        TextView sms, name, stat,by,time;
+        LinearLayout z1,z2;
 
         public MenuViewHolder(View itemView) {
             super(itemView);
             sms = (TextView) itemView.findViewById(R.id.sms);
             name = (TextView) itemView.findViewById(R.id.Name);
-
+            by = (TextView) itemView.findViewById(R.id.regisBy);
+            time = (TextView) itemView.findViewById(R.id.time);
             stat = (TextView) itemView.findViewById(R.id.status);
+            z1 = (LinearLayout) itemView.findViewById(R.id.byzone);
+            z2 = (LinearLayout) itemView.findViewById(R.id.timezone);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,6 +86,11 @@ public class SuccessAdapter extends RecyclerView.Adapter<SuccessAdapter.MenuView
                 case 1:stat.setTextColor(context.getResources().getColor(R.color.colorButtonconfirm));
                     break;
                 case 2:stat.setTextColor(context.getResources().getColor(R.color.colorButtoncancel));
+                       z1.setVisibility(View.VISIBLE);
+                       z2.setVisibility(View.VISIBLE);
+                       by.setText(model.get(position).getRG_FNAME_REGISTER());
+                       time.setText(model.get(position).getTIMESTAMP());
+
                     break;
                 default:
                     break;

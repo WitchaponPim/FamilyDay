@@ -17,6 +17,24 @@ public class SaveModel {
     private String STATUS;
     private String STATUS_ID;
     private List<PROFILEBean> PROFILE;
+    private String TIMESTAMP;
+    private String RG_FNAME_REGISTER;
+
+    public String getTIMESTAMP() {
+        return TIMESTAMP;
+    }
+
+    public void setTIMESTAMP(String TIMESTAMP) {
+        this.TIMESTAMP = TIMESTAMP;
+    }
+
+    public String getRG_FNAME_REGISTER() {
+        return RG_FNAME_REGISTER;
+    }
+
+    public void setRG_FNAME_REGISTER(String RG_FNAME_REGISTER) {
+        this.RG_FNAME_REGISTER = RG_FNAME_REGISTER;
+    }
 
     public String getSTATUS() {
         return STATUS;

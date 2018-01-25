@@ -38,10 +38,6 @@
         <item>เกมส์-คอนเสิร์ต</item>
     </string-array>
 
-    <string-array name="gameList_ID">
-        <item>1601000005</item>
-    </string-array>
-
     <string-array name="sportList">
         <item>ฟุตซอล</item>
         <item>แชร์บอล</item>
@@ -56,6 +52,7 @@
         <item>หมากรุกไทย</item>
         <item>หมากฮอส</item>
         <item>กองเชียร์ และ เชียร์ลีดเดอร์</item>
+        <item>ชมการแข่งขันกีฬา</item>
     </string-array>
 
 
@@ -73,6 +70,7 @@
         <item>1601000017</item>
         <item>1601000018</item>
         <item>1601000019</item>
+        <item>1801000020</item>
     </string-array>
 
 

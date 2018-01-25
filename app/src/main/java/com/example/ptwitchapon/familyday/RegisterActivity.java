@@ -13,7 +13,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         WebView WebViw = (WebView) findViewById(R.id.webView);
         WebViw.getSettings().setJavaScriptEnabled(true);
-        WebViw.loadUrl("http://familyday.lpn.co.th/familyday/register_activities/register");
+        WebViw.loadUrl("http://familyday.lpn.co.th/familyday_dev/familyday/register_activities/register");
 
     }
 }

@@ -159,7 +159,8 @@ public class ConfirmActivity extends AppCompatActivity {
         });
 
         txtqr.setText(Utils.regisModel.getPROFILE().get(0).getRG_SMS());
-        txtqr2.setText("QR CODE : " + Utils.regisModel.getPROFILE().get(0).getRG_SMS());
+        txtqr2.setText("กิจกรรม : "+Utils.loca+"\n"
+                +"QR CODE : " + Utils.regisModel.getPROFILE().get(0).getRG_SMS());
         txtname.setText(Utils.regisModel.getPROFILE().get(0).getRG_FNAME());
         txtlastname.setText(Utils.regisModel.getPROFILE().get(0).getRG_LNAME());
         txtact.setText(String.valueOf(Utils.regisModel.getACTIVITIES().size()));
@@ -241,7 +242,17 @@ public class ConfirmActivity extends AppCompatActivity {
                         //  Your code when user clicked on Cancel
 
                     }
-                });
+                }).setNeutralButton("Select All", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                for (int l = 0; l < Utils.regisModel.getPARENT().size(); l++) {
+                    pickList.add(String.valueOf(Utils.regisModel.getPARENT().get(l).getRG_SMS()));
+                }
+                for (int k = 0; k < pickList.size(); k++) {
+                    Log.d(TAG, "ALL: " + pickList.get(k));
+                }
+            }
+        });
 
         dialog = builder.create();//AlertDialog dialog; create like this outside onClick
         dialog.show();
