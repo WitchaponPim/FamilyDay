@@ -37,8 +37,8 @@ public class MenuActivity extends AppCompatActivity {
         mEditor = mPrefs.edit();
         //เมนู
         final ArrayList<String> list = new ArrayList<>();
-        list.add("ลงทะเบียนเข้างาน [ScanQR]");
-        list.add("ลงทะเบียนวันงาน");
+        list.add("ลงทะเบียนเข้าร่วมกิจกรรม[ScanQR]");
+        list.add("ลงทะเบียนใหม่วันงาน");
         list.add("ตรวจสอบยอดลงทะเบียนแต่ละนิติ");
         list.add("ตรวจสอบยอดลงทะเบียนทั้งหมด");
         list.add("ตรวจสอบยอดลงทะเบียนกิจกรรมทั้งหมด");

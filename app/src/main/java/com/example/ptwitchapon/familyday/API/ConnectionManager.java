@@ -223,8 +223,8 @@ public class ConnectionManager {
         });
     }
 
-    public void count(final CountCallbackListener listener,String count,String user){
-        Call call = con.count_tamma(count,user);
+    public void count(final CountCallbackListener listener,String count,String user,String act_code){
+        Call call = con.count_tamma(count,user,act_code);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Response response, Retrofit retrofit) {

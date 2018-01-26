@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/bg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:src="@drawable/bg" />
@@ -17,80 +17,88 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            />
+            layout="@layout/toolbar" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_margin="@dimen/textsize_XH"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal"
-                >
-                <TextView
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ACT ID : "
-                    android:textSize="@dimen/textsize_H"/>
+
+
+            <ImageView
+                android:id="@+id/title_icon"
+                android:layout_width="@dimen/list_height"
+                android:layout_height="@dimen/list_height"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/fab_margin" />
+
+
                 <TextView
-                    android:id="@+id/actID"
+                    android:layout_below="@id/title_icon"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/title_act"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="XXXXXXXXXX"
+                    android:text="TITLE"
                     android:textSize="@dimen/textsize_XH"/>
 
-            </LinearLayout>
-
+            <Button
+                android:background="@drawable/button_s1"
+                android:text="back"
+                android:textColor="@color/colorButtonf"
+                android:layout_width="@dimen/list_height"
+                android:layout_height="@dimen/edt_height"
+                android:layout_margin="@dimen/space"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_margin="@dimen/fab_margin"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/countArea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginBottom="@dimen/space"
-                    android:weightSum="1"
                     android:gravity="center_horizontal"
+                    android:orientation="horizontal"
                     android:visibility="gone"
-                    >
+                    android:weightSum="1">
+
                     <EditText
                         android:id="@+id/total"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
-                        android:padding="@dimen/space"
                         android:layout_weight=".4"
+                        android:background="@drawable/edt"
                         android:inputType="number"
-                        android:text="1"
-                        android:background="@drawable/edt"/>
+                        android:padding="@dimen/space"
+                        android:text="1" />
+
                     <Button
                         android:id="@+id/countbtn"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
                         android:layout_marginLeft="@dimen/space"
-                        android:text="นับ"
-                        android:textColor="@color/colorButtonf"
                         android:layout_weight=".2"
-                        android:background="@drawable/button_s1"/>
+                        android:background="@drawable/button_s1"
+                        android:text="นับ"
+                        android:textColor="@color/colorButtonf" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/space_X"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -98,7 +106,7 @@
                         android:id="@+id/edtsms"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
-                        android:layout_marginBottom="20dp"
+                        android:layout_gravity="bottom"
                         android:layout_weight="0.80"
                         android:background="@drawable/edt"
                         android:drawableLeft="@mipmap/ic_password"
@@ -110,12 +118,14 @@
 
                     <ImageView
                         android:id="@+id/qrscan"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/edt_height"
-                        android:layout_weight="0.20"
-                        android:src="@drawable/qrscan" />
-                </LinearLayout>
 
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_height"
+                        android:layout_weight="0.20"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/qrscan" />
+
+                </LinearLayout>
 
 
                 <Button
@@ -131,7 +141,6 @@
 
             </LinearLayout>
         </RelativeLayout>
-
 
 
     </LinearLayout>

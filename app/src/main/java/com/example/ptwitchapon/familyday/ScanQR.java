@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.ptwitchapon.familyday.API.ConnectionManager;
 import com.example.ptwitchapon.familyday.API.CountCallbackListener;
 import com.example.ptwitchapon.familyday.API.ScanQrCallbackListener;
+import com.example.ptwitchapon.familyday.Adapter.InputFilterMinMax;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.squareup.okhttp.ResponseBody;
 
@@ -32,10 +34,11 @@ public class ScanQR extends AppCompatActivity {
     ScanQrCallbackListener scanQrCallbackListener;
     CountCallbackListener countCallbackListener;
     String TAG = "Poon",title,actID;
-    TextView act_id;
+    TextView title_act;
     EditText edt,total;
     Button btn,btn_count;
     LinearLayout count;
+    ImageView title_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +74,10 @@ public class ScanQR extends AppCompatActivity {
         countCallbackListener = new CountCallbackListener() {
             @Override
             public void onResponse(String result, Retrofit retrofit) {
-
-                Utils.toast(getApplicationContext(),result);
-                Log.d(TAG, "onResponse: "+result);
+                progressDialog.dismiss();
+                total.setText("1");
+                Utils.toast(getApplicationContext(),"เพิ่มจำนวนเแล้ว");
+                Log.d(TAG, "onResponse: "+result.toString());
             }
 
             @Override
@@ -98,18 +102,22 @@ public class ScanQR extends AppCompatActivity {
             title= getResources().getStringArray(R.array.gameList)[0];
             actID= getResources().getStringArray(R.array.gameList_ID)[0];
         }
+
         ImageView img = (ImageView) findViewById(R.id.qrscan);
         edt = (EditText) findViewById(R.id.edtsms) ;
         total = (EditText) findViewById(R.id.total);
         btn = (Button) findViewById(R.id.btn_submit);
         btn_count = (Button)findViewById(R.id.countbtn);
-        act_id = (TextView) findViewById(R.id.actID);
+        title_act = (TextView) findViewById(R.id.title_act);
         count = (LinearLayout) findViewById(R.id.countArea);
+        title_icon = (ImageView) findViewById(R.id.title_icon);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        title_act.setText(title);
         toolbar.setTitle(title);
-        act_id.setText(actID);
+        checktitle(title);
+        total.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -122,12 +130,13 @@ public class ScanQR extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        if(title.equals("ธรรมะในสวน")){
+        if(title.equals("ธรรมะในสวน")||title.equals("ชมการแข่งขันกีฬา")||title.equals("ดนตรีในสวน")){
             count.setVisibility(LinearLayout.VISIBLE);
             btn_count.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    connect.count(countCallbackListener,total.getText().toString(),Utils.userModel.getProfile().getUsername());
+                    progressDialog = ProgressDialog.show(ScanQR.this,"Please wait", "Loading...",true,false);
+                    connect.count(countCallbackListener,total.getText().toString(),Utils.userModel.getProfile().getUsername(),actID);
                 }
             });
         }
@@ -198,6 +207,49 @@ public class ScanQR extends AppCompatActivity {
                 break;
             default:Toast.makeText(getApplicationContext(), Utils.regisModel.getSTATUS(), Toast.LENGTH_LONG).show();
                 break;
+        }
+    }
+    public void checktitle(String title){
+        switch (title){
+            case"เดิน-วิ่ง 2.5 กม.":title_icon.setImageResource(R.drawable.run);
+                break;
+            case"เดิน-วิ่ง 5.0 กม.":title_icon.setImageResource(R.drawable.run);
+                break;
+            case"ธรรมะในสวน":title_icon.setImageResource(R.drawable.tumma);
+                break;
+            case"ดนตรีในสวน":title_icon.setImageResource(R.drawable.music);
+                break;
+            case"เกมส์-คอนเสิร์ต":title_icon.setImageResource(R.drawable.concert);
+                break;
+            case"ฟุตซอล":title_icon.setImageResource(R.drawable.ball);
+                break;
+            case"แชร์บอล":title_icon.setImageResource(R.drawable.chair);
+                break;
+            case"สตรีทบาส":title_icon.setImageResource(R.drawable.basketball);
+                break;
+            case"แบดมินตันชายเดี่ยว":title_icon.setImageResource(R.drawable.badminton);
+                break;
+            case"แบดมินตันหญิงเดี่ยว":title_icon.setImageResource(R.drawable.badminton);
+                break;
+            case"แบดมินตันคู่ผสม":title_icon.setImageResource(R.drawable.badminton);
+                break;
+            case"แบดมินตันมิตรภาพ":title_icon.setImageResource(R.drawable.badminton);
+                break;
+            case"ปิงปองชายเดี่ยว":title_icon.setImageResource(R.drawable.pingpong);
+                break;
+            case"ปิงปองหญิงเดี่ยว":title_icon.setImageResource(R.drawable.pingpong);
+                break;
+            case"ปิงปองคู่ผสม":title_icon.setImageResource(R.drawable.pingpong);
+                break;
+            case"หมากฮอส":title_icon.setImageResource(R.drawable.checkers);
+                break;
+            case"กองเชียร์ และ เชียร์ลีดเดอร์":title_icon.setImageResource(R.drawable.cheerleader);
+                break;
+            case"ชมการแข่งขันกีฬา":title_icon.setImageResource(R.drawable.seeeee);
+                break;
+            default:
+                break;
+
         }
     }
 }
