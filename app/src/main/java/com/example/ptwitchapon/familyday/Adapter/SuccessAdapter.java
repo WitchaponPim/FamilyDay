@@ -84,13 +84,14 @@ public class SuccessAdapter extends RecyclerView.Adapter<SuccessAdapter.MenuView
 
             switch (Integer.valueOf(model.get(position).getSTATUS_ID())) {
                 case 1:stat.setTextColor(context.getResources().getColor(R.color.colorButtonconfirm));
+                       z1.setVisibility(View.GONE);
+                       z2.setVisibility(View.GONE);
                     break;
                 case 2:stat.setTextColor(context.getResources().getColor(R.color.colorButtoncancel));
                        z1.setVisibility(View.VISIBLE);
                        z2.setVisibility(View.VISIBLE);
                        by.setText(model.get(position).getRG_FNAME_REGISTER());
                        time.setText(model.get(position).getTIMESTAMP());
-
                     break;
                 default:
                     break;

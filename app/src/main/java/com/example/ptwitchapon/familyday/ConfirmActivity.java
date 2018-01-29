@@ -251,6 +251,7 @@ public class ConfirmActivity extends AppCompatActivity {
                 for (int k = 0; k < pickList.size(); k++) {
                     Log.d(TAG, "ALL: " + pickList.get(k));
                 }
+                Utils.toast(getApplicationContext(),"เลือกผู้ติดตามทั้งหมดแล้ว");
             }
         });
 

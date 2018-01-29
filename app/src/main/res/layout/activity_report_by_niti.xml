@@ -32,10 +32,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right"
                 android:layout_marginLeft="10dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".4
+">
+
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -64,11 +70,10 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:layout_weight=".5"
-                                android:weightSum="1">
+                                >
                                 <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:text="เดิน-วิ่ง"
                                     />
@@ -78,11 +83,10 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:layout_weight=".5"
-                                android:weightSum="1">
+                               >
                                 <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:text="กีฬา"
                                     />
@@ -177,10 +181,12 @@
         </LinearLayout>
 
         <LinearLayout
+
             android:id="@+id/area"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
             <ListView
                 android:layout_gravity="center_vertical"
                 android:id="@+id/listreportniti"
@@ -191,8 +197,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
@@ -238,5 +242,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
 
 </RelativeLayout>
