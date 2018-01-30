@@ -36,7 +36,7 @@ public class ScanQR extends AppCompatActivity {
     String TAG = "Poon",title,actID;
     TextView title_act;
     EditText edt,total;
-    Button btn,btn_count;
+    Button btn,btn_count,back_btn;
     LinearLayout count;
     ImageView title_icon;
 
@@ -108,13 +108,15 @@ public class ScanQR extends AppCompatActivity {
         total = (EditText) findViewById(R.id.total);
         btn = (Button) findViewById(R.id.btn_submit);
         btn_count = (Button)findViewById(R.id.countbtn);
+        back_btn = (Button) findViewById(R.id.back_btn);
         title_act = (TextView) findViewById(R.id.title_act);
         count = (LinearLayout) findViewById(R.id.countArea);
         title_icon = (ImageView) findViewById(R.id.title_icon);
 
+        String newTitle = title.replace("กีฬาประชาคมลุมพินี-","");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        title_act.setText(title);
+        title_act.setText(newTitle);
         toolbar.setTitle(title);
         checktitle(title);
         total.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
@@ -143,7 +145,12 @@ public class ScanQR extends AppCompatActivity {
 
 
 
-
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

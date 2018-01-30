@@ -1,11 +1,13 @@
 package com.example.ptwitchapon.familyday.API;
 
+import com.example.ptwitchapon.familyday.Model.ChkversionModel;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.Report_allModel;
 import com.example.ptwitchapon.familyday.Model.SaveModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
+import com.example.ptwitchapon.familyday.Model.VerModel;
 
 import java.util.List;
 
@@ -43,4 +45,7 @@ public interface APIService {
     @POST("count_tamma")
     Call<String> count_tamma(@Field("count")String count, @Field("username") String user,@Field("activity")String act_code);
 
+    @FormUrlEncoded
+    @POST("version_chk")
+    Call<VerModel> chkver(@Field("version") String ver);
 }

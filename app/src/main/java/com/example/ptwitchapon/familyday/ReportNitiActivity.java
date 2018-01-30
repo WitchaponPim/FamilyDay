@@ -12,6 +12,8 @@ import com.example.ptwitchapon.familyday.API.ConnectionManager;
 import com.example.ptwitchapon.familyday.Model.Report_allModel;
 import com.squareup.okhttp.ResponseBody;
 
+import java.text.DecimalFormat;
+
 import retrofit.Retrofit;
 
 public class ReportNitiActivity extends AppCompatActivity {
@@ -39,7 +41,7 @@ public class ReportNitiActivity extends AppCompatActivity {
 
                 sum.setText(report_allModel.getSUM());
                 total.setText(report_allModel.getTOTAL());
-                percent.setText(String.valueOf(totals)+" %");
+                percent.setText(String.valueOf(new DecimalFormat("##").format(totals))+" %");
             }
 
             @Override

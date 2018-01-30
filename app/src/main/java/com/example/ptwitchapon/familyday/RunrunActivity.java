@@ -50,10 +50,11 @@ public class RunrunActivity extends AppCompatActivity {
                 Intent intent = new Intent(RunrunActivity.this,ScanQR.class);
                 String title = list.get(i);
                 String actID = list_id.get(i);
+
                 intent.putExtra("title", title);
                 intent.putExtra("actID",actID);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }

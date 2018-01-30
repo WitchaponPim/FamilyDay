@@ -1,11 +1,13 @@
 package com.example.ptwitchapon.familyday.API;
 
+import com.example.ptwitchapon.familyday.Model.ChkversionModel;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
 import com.example.ptwitchapon.familyday.Model.RepNitiModel;
 import com.example.ptwitchapon.familyday.Model.ReportAllModel;
 import com.example.ptwitchapon.familyday.Model.Report_allModel;
 import com.example.ptwitchapon.familyday.Model.SaveModel;
 import com.example.ptwitchapon.familyday.Model.UserModel;
+import com.example.ptwitchapon.familyday.Model.VerModel;
 import com.squareup.okhttp.ResponseBody;
 
 import java.util.List;
@@ -240,6 +242,33 @@ public class ConnectionManager {
                 } else {
                     //200
                     listener.onResponse( result, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
+            }
+        });
+    }
+
+    public void chkver(final ChkverCallbackListener listener,String ver){
+        Call call = con.chkver(ver);
+        call.enqueue(new Callback<VerModel>() {
+            @Override
+            public void onResponse(Response<VerModel> response, Retrofit retrofit) {
+                VerModel chkversionModel = response.body();
+                if (chkversionModel == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( chkversionModel, retrofit);
                 }
             }
 

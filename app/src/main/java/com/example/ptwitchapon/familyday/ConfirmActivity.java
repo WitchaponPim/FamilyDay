@@ -1,5 +1,6 @@
 package com.example.ptwitchapon.familyday;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
@@ -56,7 +57,7 @@ public class ConfirmActivity extends AppCompatActivity {
     SaveQrCallbackListener saveQrCallbackListener;
     ScanQrCallbackListener callbackListener;
     ChangeCallbackListener changeCallbackListener;
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class ConfirmActivity extends AppCompatActivity {
         saveQrCallbackListener = new SaveQrCallbackListener() {
             @Override
             public void onResponse(List<SaveModel> saveModels, Retrofit retrofit) {
+                progressDialog.dismiss();
                 Utils.saveModel = saveModels;
                 Utils.toast(getApplicationContext(),Utils.saveModel.get(0).getSTATUS_ID()+" "+Utils.saveModel.get(0).getSTATUS());
                 Log.d(TAG, "onResponse: ");
@@ -154,6 +156,7 @@ public class ConfirmActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog = ProgressDialog.show(ConfirmActivity.this,"Please wait", "Loading...",true,false);
                 save();
             }
         });
@@ -347,7 +350,6 @@ public class ConfirmActivity extends AppCompatActivity {
     public void check_act(){
 
         List<String> list = new ArrayList<>();
-
         for (int i = 0 ;i<Utils.regisModel.getACTIVITIES().size();i++){
             list.add(Utils.regisModel.getACTIVITIES().get(i).getET_TNAME());
             Log.d(TAG, "check_act: "+list.get(i)+ " : " + Utils.loca);

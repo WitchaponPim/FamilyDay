@@ -1,8 +1,11 @@
 package com.example.ptwitchapon.familyday;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,12 +85,7 @@ public class MenuActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mEditor.clear();
-                mEditor.commit();
-                Utils.userModel = null;
-                Intent b = new Intent(MenuActivity.this,LoginActivity.class);
-                startActivity(b);
-                finish();
+                showdialog();
             }
         });
     }
@@ -95,5 +93,32 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+    }
+    public void showdialog(){
+        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("ออกจากระบบ?");
+        builder.setMessage("ต้องการออกจากระบบหรือไม่");
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mEditor.putString("user",null);
+                mEditor.putString("password",null);
+                mEditor.commit();
+                Utils.userModel = null;
+                Intent b = new Intent(MenuActivity.this,LoginActivity.class);
+                startActivity(b);
+                finish();
+            }
+        });
+        builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Utils.toast(getApplicationContext(),"");
+            }
+        });
+
+        dialog = builder.create();//AlertDialog dialog; create like this outside onClick
+        dialog.show();
     }
 }
