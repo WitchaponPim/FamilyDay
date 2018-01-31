@@ -42,8 +42,11 @@ public interface APIService {
     @POST("saveActivity")
     Call<List<SaveModel>> save_QR(@Field("qrcode")String qr, @Field("username") String user, @Field("activity") String act_code);
     @FormUrlEncoded
-    @POST("count_tamma")
-    Call<String> count_tamma(@Field("count")String count, @Field("username") String user,@Field("activity")String act_code);
+    @POST("counts")//count_tamma ไม่ใช่แค่ธรรมมะอย่างเดียวโว๊ยยย
+    Call<String> count_tamma(@Field("count")String count, @Field("username") String user,@Field("activity")String act_code,@Field("type")String type);
+
+    @GET("count_tamma")
+    Call<Report_allModel> gettamma();
 
     @FormUrlEncoded
     @POST("version_chk")

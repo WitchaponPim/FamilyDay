@@ -44,7 +44,7 @@ public class MenuActivity extends AppCompatActivity {
         list.add("ลงทะเบียนใหม่วันงาน");
         list.add("ตรวจสอบยอดลงทะเบียนแต่ละนิติ");
         list.add("ตรวจสอบยอดลงทะเบียนทั้งหมด");
-        list.add("ตรวจสอบยอดลงทะเบียนกิจกรรมทั้งหมด");
+        list.add("ตรวจสอบยอดลงทะเบียนกิจกรรม เดิน-วิ่ง");
 
 
 

@@ -89,6 +89,7 @@
                         android:textColor="@color/colorButtonf" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ScanZone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_X"
@@ -103,6 +104,7 @@
                         android:layout_gravity="bottom"
                         android:layout_weight="0.80"
                         android:background="@drawable/edt"
+                        android:lineSpacingMultiplier="1"
                         android:drawableLeft="@mipmap/ic_password"
                         android:hint=" SMS,ชื่อ,สกุล,เบอร์โทร"
                         android:maxLines="1"
@@ -129,6 +131,80 @@
                     android:backgroundTint="@color/colorButton"
                     android:text="Submit"
                     android:textColor="@color/colorButtonf" />
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/countArearun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_margin="@dimen/space_X"
+                    android:visibility="gone"
+                    android:weightSum="1">
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/r0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LPN Team"/>
+                        <RadioButton
+                            android:id="@+id/r1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="พนักงาน"/>
+                        <RadioButton
+                            android:id="@+id/r2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ประชาชนทั่วไป"/>
+
+                    </RadioGroup>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:weightSum="1"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/totalrun"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/edt_height"
+                            android:layout_weight=".4"
+                            android:background="@drawable/edt"
+                            android:inputType="number"
+                            android:padding="@dimen/space"
+                            android:text="1" />
+
+                        <Button
+                            android:id="@+id/countbtnrun"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/edt_height"
+                            android:layout_marginLeft="@dimen/space"
+                            android:layout_weight=".2"
+                            android:background="@drawable/button_s1"
+                            android:text="นับ"
+                            android:textColor="@color/colorButtonf" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/sum_tamma"
+                        android:text="SUM!"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/textsize_XH"/>
+                    <TextView
+                        android:id="@+id/total_tamma"
+                        android:text="TOTAL!"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/textsize_XH"/>
+
+                </LinearLayout>
 
             </LinearLayout>
             </ScrollView>

@@ -29,6 +29,7 @@ import com.squareup.okhttp.internal.Util;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,19 +38,21 @@ import retrofit.Retrofit;
 
 public class ConfirmActivity extends AppCompatActivity {
     String TAG = "Poon";
-    TextView txtqr, txtname, txtlastname, txtunit, txtact, txtfol, txtqr2,alert;
+    String runTYPE;
+    TextView txtqr, txtname, txtlastname, txtunit, txtact, txtfol, txtqr2,alert,runtype;
     Button btn;
-    ImageView followpick, actpick;
-    LinearLayout btnarea;
-
+    ImageView followpick, actpick,swap;
+    LinearLayout btnarea,swaparea;
+    boolean foundrun;
     ArrayList<String> pickList = new ArrayList<>();
     ArrayList<Integer> position = new ArrayList<>();
+    ArrayList<String> actList = new ArrayList<>();
 
     String select;
     ArrayList seletedItems = new ArrayList();
     ArrayList<RegisModel.PARENTBean> sel = new ArrayList<>();
 
-    String[] actList = new String[Utils.regisModel.getACTIVITIES().size()];
+   
     String[] followList = new String[Utils.regisModel.getPARENT().size()];
     String[] parentQR = new String[Utils.regisModel.getPARENT().size()];
 
@@ -63,6 +66,7 @@ public class ConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
         btnarea = (LinearLayout) findViewById(R.id.submit_area2);
+        swaparea = (LinearLayout) findViewById(R.id.swZone);
         txtqr = (TextView) findViewById(R.id.txt_qr);
         txtqr2 = (TextView) findViewById(R.id.txt_qr_h);
         txtact = (TextView) findViewById(R.id.txt_act_total);
@@ -71,11 +75,13 @@ public class ConfirmActivity extends AppCompatActivity {
         txtlastname = (TextView) findViewById(R.id.txt_lastname);
         txtunit = (TextView) findViewById(R.id.txt_unit);
         alert = (TextView) findViewById(R.id.txt_alert);
+        runtype = (TextView) findViewById(R.id.txt_run_type);
         followpick = (ImageView) findViewById(R.id.followpick);
         actpick = (ImageView) findViewById(R.id.actpick);
+        swap = (ImageView) findViewById(R.id.swap);
         btn = (Button) findViewById(R.id.savegroup);
         check_act();
-
+        createAct();
         saveQrCallbackListener = new SaveQrCallbackListener() {
             @Override
             public void onResponse(List<SaveModel> saveModels, Retrofit retrofit) {
@@ -151,8 +157,6 @@ public class ConfirmActivity extends AppCompatActivity {
             }
         };
 
-
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,13 +164,12 @@ public class ConfirmActivity extends AppCompatActivity {
                 save();
             }
         });
-
+        txtact.setText(String.valueOf(actList.size()));
         txtqr.setText(Utils.regisModel.getPROFILE().get(0).getRG_SMS());
         txtqr2.setText("กิจกรรม : "+Utils.loca+"\n"
                 +"QR CODE : " + Utils.regisModel.getPROFILE().get(0).getRG_SMS());
         txtname.setText(Utils.regisModel.getPROFILE().get(0).getRG_FNAME());
         txtlastname.setText(Utils.regisModel.getPROFILE().get(0).getRG_LNAME());
-        txtact.setText(String.valueOf(Utils.regisModel.getACTIVITIES().size()));
         txtunit.setText(Utils.regisModel.getPROFILE().get(0).getRG_UNIT());
         txtfol.setText(String.valueOf(Utils.regisModel.getPARENT().size()));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -176,6 +179,13 @@ public class ConfirmActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+
+        if(foundrun){
+
+            swaparea.setVisibility(View.VISIBLE);
+            String newRun = runTYPE.replace("เดิน-วิ่ง","");
+            runtype.setText(newRun);
+        }
 
 
         followpick.setOnClickListener(new View.OnClickListener() {
@@ -190,7 +200,14 @@ public class ConfirmActivity extends AppCompatActivity {
         actpick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createAct();
+
+                activitiesSelect(actList);
+            }
+        });
+        swap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                swapSelect(runTYPE);
             }
         });
 
@@ -262,19 +279,23 @@ public class ConfirmActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void activitiesSelect(final String[] items) {
+    public void activitiesSelect(final ArrayList<String> items) {
+        String[] item = new String[items.size()];
+        for(int i = 0 ;i<items.size();i++){
+            item[i] = items.get(i);
+        }
+
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(ConfirmActivity.this);
         builder.setTitle("กิจกรรมที่สามารถลงได้ทั้งหมด");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String selected = items[which];
-                Toast.makeText(getApplicationContext(), selected, Toast.LENGTH_SHORT).show();
-//                if (selected.equals(getResources().getStringArray(R.array.runList)[0])||selected.equals(getResources().getStringArray(R.array.runList)[1])){
-//                    changeRun();
-//                }
-                switch (items[which]) {
+        builder.setItems(item,null);
+        builder.setNegativeButton("OK", null);
+        builder.create();
+        builder.show();
+    }
+
+    public void swapSelect(String item){
+                switch (item) {
                     case "เดิน-วิ่ง 2.5 กม.": changeRun(1);
                         break;
                     case "เดิน-วิ่ง 5.0 กม.": changeRun(0);
@@ -282,26 +303,31 @@ public class ConfirmActivity extends AppCompatActivity {
                     default:
                         break;
                 }
-            }
-        });
-        builder.setNegativeButton("OK", null);
-        builder.create();
 
-        builder.show();
     }
 
     public void createList() {
         for (int i = 0; i < Utils.regisModel.getPARENT().size(); i++) {
             followList[i] = Utils.regisModel.getPARENT().get(i).getRG_FNAME() + " " + Utils.regisModel.getPARENT().get(i).getRG_LNAME();
+
         }
         followSelect(followList);
     }
 
     public void createAct() {
+        boolean test;
         for (int i = 0; i < Utils.regisModel.getACTIVITIES().size(); i++) {
-            actList[i] = Utils.regisModel.getACTIVITIES().get(i).getET_TNAME();
+            test = Utils.regisModel.getACTIVITIES().get(i).getET_TNAME().contains("เดิน-วิ่ง");
+            Log.d(TAG, "createAct: "+test);
+            if(test){
+                runTYPE = Utils.regisModel.getACTIVITIES().get(i).getET_TNAME();
+                foundrun = test;
+            }else {
+                actList.add(Utils.regisModel.getACTIVITIES().get(i).getET_TNAME());
+            }
+
         }
-        activitiesSelect(actList);
+
     }
 
 
@@ -318,7 +344,6 @@ public class ConfirmActivity extends AppCompatActivity {
     }
 
     public void changeRun(int i) {
-
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(ConfirmActivity.this);
         builder.setTitle("เปลี่ยนประเภท");

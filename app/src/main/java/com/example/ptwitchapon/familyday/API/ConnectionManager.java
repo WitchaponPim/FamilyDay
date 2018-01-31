@@ -225,8 +225,8 @@ public class ConnectionManager {
         });
     }
 
-    public void count(final CountCallbackListener listener,String count,String user,String act_code){
-        Call call = con.count_tamma(count,user,act_code);
+    public void count(final CountCallbackListener listener,String count,String user,String act_code,String type){
+        Call call = con.count_tamma(count,user,act_code,type);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Response response, Retrofit retrofit) {
@@ -269,6 +269,33 @@ public class ConnectionManager {
                 } else {
                     //200
                     listener.onResponse( chkversionModel, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
+            }
+        });
+    }
+
+    public void calltamma(final CallbackListener listener){
+        Call call = con.gettamma();
+        call.enqueue(new Callback<Report_allModel>() {
+            @Override
+            public void onResponse(Response<Report_allModel> response, Retrofit retrofit) {
+                Report_allModel result = response.body();
+                if (result == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( result, retrofit);
                 }
             }
 

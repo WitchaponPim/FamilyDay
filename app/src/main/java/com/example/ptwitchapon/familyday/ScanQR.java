@@ -12,14 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ptwitchapon.familyday.API.CallbackListener;
 import com.example.ptwitchapon.familyday.API.ConnectionManager;
 import com.example.ptwitchapon.familyday.API.CountCallbackListener;
 import com.example.ptwitchapon.familyday.API.ScanQrCallbackListener;
 import com.example.ptwitchapon.familyday.Adapter.InputFilterMinMax;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
+import com.example.ptwitchapon.familyday.Model.Report_allModel;
 import com.squareup.okhttp.ResponseBody;
 
 import org.w3c.dom.Text;
@@ -33,17 +36,42 @@ public class ScanQR extends AppCompatActivity {
     ConnectionManager connect = new ConnectionManager();
     ScanQrCallbackListener scanQrCallbackListener;
     CountCallbackListener countCallbackListener;
+    CallbackListener callbackListener;
     String TAG = "Poon",title,actID;
     TextView title_act;
-    EditText edt,total;
-    Button btn,btn_count,back_btn;
-    LinearLayout count;
+    EditText edt,total,total_run;
+    Button btn,btn_count,back_btn,btn_count_run;
+    LinearLayout count,count_run,ScanZone;
+    RadioButton r0,r1,r2;
+
     ImageView title_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qr);
+
+        callbackListener = new CallbackListener() {
+            @Override
+            public void onResponse(Report_allModel result, Retrofit retrofit) {
+                Utils.toast(getApplicationContext(),result.getSUM());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+
+            @Override
+            public void onBodyError(ResponseBody responseBody) {
+
+            }
+
+            @Override
+            public void onBodyErrorIsNull() {
+
+            }
+        };
 
         scanQrCallbackListener = new ScanQrCallbackListener() {
             @Override
@@ -76,6 +104,7 @@ public class ScanQR extends AppCompatActivity {
             public void onResponse(String result, Retrofit retrofit) {
                 progressDialog.dismiss();
                 total.setText("1");
+                total_run.setText("1");
                 Utils.toast(getApplicationContext(),"เพิ่มจำนวนเแล้ว");
                 Log.d(TAG, "onResponse: "+result.toString());
             }
@@ -106,11 +135,18 @@ public class ScanQR extends AppCompatActivity {
         ImageView img = (ImageView) findViewById(R.id.qrscan);
         edt = (EditText) findViewById(R.id.edtsms) ;
         total = (EditText) findViewById(R.id.total);
+        total_run = (EditText) findViewById(R.id.totalrun);
         btn = (Button) findViewById(R.id.btn_submit);
         btn_count = (Button)findViewById(R.id.countbtn);
+        btn_count_run = (Button) findViewById(R.id.countbtnrun);
         back_btn = (Button) findViewById(R.id.back_btn);
         title_act = (TextView) findViewById(R.id.title_act);
         count = (LinearLayout) findViewById(R.id.countArea);
+        count_run = (LinearLayout) findViewById(R.id.countArearun);
+        ScanZone = (LinearLayout) findViewById(R.id.ScanZone);
+        r0 = (RadioButton) findViewById(R.id.r0);
+        r1 = (RadioButton) findViewById(R.id.r1);
+        r2 = (RadioButton) findViewById(R.id.r2);
         title_icon = (ImageView) findViewById(R.id.title_icon);
 
         String newTitle = title.replace("กีฬาประชาคมลุมพินี-","");
@@ -132,18 +168,46 @@ public class ScanQR extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        if(title.equals("ธรรมะในสวน")||title.equals("ชมการแข่งขันกีฬา")||title.equals("ดนตรีในสวน")){
+        if(title.equals("ธรรมะในสวน")){
             count.setVisibility(LinearLayout.VISIBLE);
+            connect.calltamma(callbackListener);
             btn_count.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     progressDialog = ProgressDialog.show(ScanQR.this,"Please wait", "Loading...",true,false);
-                    connect.count(countCallbackListener,total.getText().toString(),Utils.userModel.getProfile().getUsername(),actID);
+                    connect.count(countCallbackListener,total.getText().toString(),Utils.userModel.getProfile().getUsername(),actID,null);
+                }
+            });
+        }else if(title.contains("เดิน-วิ่ง")){
+            count_run.setVisibility(LinearLayout.VISIBLE);
+
+            btn_count_run.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String value = null;
+                   if(r0.isChecked()){
+                       value ="LPN Team";
+                   }else if(r1.isChecked()){
+                       value ="employee";
+                   }else if(r2.isChecked()){
+                        value ="other";
+                    }
+                    progressDialog = ProgressDialog.show(ScanQR.this,"Please wait", "Loading...",true,false);
+                    connect.count(countCallbackListener,total_run.getText().toString(),Utils.userModel.getProfile().getUsername(),actID,value);
+                }
+            });
+        }else if(title.equals("ดนตรีในสวน")||title.equals("ชมการแข่งขันกีฬา")){
+            count.setVisibility(LinearLayout.VISIBLE);
+            ScanZone.setVisibility(LinearLayout.GONE);
+            btn.setVisibility(View.GONE);
+            btn_count.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    progressDialog = ProgressDialog.show(ScanQR.this,"Please wait", "Loading...",true,false);
+                    connect.count(countCallbackListener,total.getText().toString(),Utils.userModel.getProfile().getUsername(),actID,null);
                 }
             });
         }
-
-
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +218,7 @@ public class ScanQR extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String search = edt.getText().toString();
+                String search = edt.getText().toString().trim();
                 progressDialog = ProgressDialog.show(ScanQR.this,"Please wait", "Loading...",true,false);
                 connect.scanqr(scanQrCallbackListener,search,Utils.userModel.getProfile().getUsername(),actID);
             }
@@ -212,7 +276,9 @@ public class ScanQR extends AppCompatActivity {
                     GogoConfirm();
                 }
                 break;
-            default:Toast.makeText(getApplicationContext(), Utils.regisModel.getSTATUS(), Toast.LENGTH_LONG).show();
+            default:
+                edt.setText("");
+                Toast.makeText(getApplicationContext(), Utils.regisModel.getSTATUS(), Toast.LENGTH_LONG).show();
                 break;
         }
     }
