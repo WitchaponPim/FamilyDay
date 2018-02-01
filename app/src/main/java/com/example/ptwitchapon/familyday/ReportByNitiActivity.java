@@ -30,6 +30,7 @@ public class ReportByNitiActivity extends AppCompatActivity {
     RepNitiAdapter adapter;
     RepNitiCallbackListener repNitiCallbackListener;
     ConnectionManager connect = new ConnectionManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +43,12 @@ public class ReportByNitiActivity extends AppCompatActivity {
             @Override
             public void onResponse(List<RepNitiModel> repNitiModels, Retrofit retrofit) {
                 Utils.repNitiModels = repNitiModels;
-                Log.d(TAG, "onResponse: "+repNitiModels.get(0).getNT_TNAME().toString());
-                for (int i=0;i<Utils.repNitiModels.size();i++){
-                    totals = totals+Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT())+Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT2());
+                Log.d(TAG, "onResponse: " + repNitiModels.get(0).getNT_TNAME().toString());
+                for (int i = 0; i < Utils.repNitiModels.size(); i++) {
+                    totals = totals + Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT())
+                            + Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT2()
+                            + Integer.valueOf(Utils.repNitiModels.get(i).getS_SPORT()
+                            + Integer.valueOf(Utils.repNitiModels.get(i).getS_RUNNING())));
                 }
                 setadapter();
             }
@@ -67,9 +71,9 @@ public class ReportByNitiActivity extends AppCompatActivity {
         connect.repByniti(repNitiCallbackListener);
     }
 
-    private void setadapter(){
+    private void setadapter() {
 
-        adapter = new RepNitiAdapter(getApplicationContext(),Utils.repNitiModels);
+        adapter = new RepNitiAdapter(getApplicationContext(), Utils.repNitiModels);
         reportniti.setAdapter(adapter);
         summary.setText(String.valueOf(totals));
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

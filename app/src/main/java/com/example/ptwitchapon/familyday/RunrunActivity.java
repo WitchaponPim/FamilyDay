@@ -54,7 +54,7 @@ public class RunrunActivity extends AppCompatActivity {
                 intent.putExtra("title", title);
                 intent.putExtra("actID",actID);
                 startActivity(intent);
-//                finish();
+                finish();
             }
         });
     }

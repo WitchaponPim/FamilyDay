@@ -27,25 +27,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/txt_qr_h"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="@dimen/space_X"
-                android:textSize="@dimen/textsize_XH"
-                android:textAlignment="center"
                 android:gravity="top"
-                android:text="QR CODE :" />
+                android:paddingTop="@dimen/space_X"
+                android:text="QR CODE :"
+                android:textAlignment="center"
+                android:textSize="@dimen/textsize_XH" />
 
             <TextView
                 android:id="@+id/txt_alert"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/list_height"
-                android:textSize="@dimen/textsize_H"
-                android:textColor="@color/colorButtoncancel"
                 android:gravity="center"
-                android:text="TESTTTTTTTT" />
+                android:text="TESTTTTTTTT"
+                android:textColor="@color/colorButtoncancel"
+                android:textSize="@dimen/textsize_H"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,159 +54,185 @@
                 android:layout_margin="@dimen/fab_margin"
                 android:gravity="center"
                 android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight=".5"
-                    android:background="@drawable/edt"
-                    android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight=".5"
+                        android:background="@drawable/edt"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edt_height"
+                            android:layout_marginLeft="@dimen/fab_margin"
+                            android:layout_weight=".5"
+                            android:gravity="center_vertical"
+                            android:text="QR CODE :" />
+
+                        <TextView
+                            android:id="@+id/txt_qr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edt_height"
+                            android:layout_marginLeft="@dimen/fab_margin"
+                            android:layout_weight=".5"
+                            android:gravity="center_vertical"
+                            android:text="F30R39" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
                         android:layout_marginLeft="@dimen/fab_margin"
                         android:layout_weight=".5"
-                        android:gravity="center_vertical"
-                        android:text="QR CODE :" />
+                        android:background="@drawable/edt"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/txt_qr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/edt_height"
-                        android:layout_marginLeft="@dimen/fab_margin"
-                        android:layout_weight=".5"
-                        android:gravity="center_vertical"
-                        android:text="F30R39" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edt_height"
+                            android:layout_marginLeft="@dimen/fab_margin"
+                            android:layout_weight=".5"
+                            android:gravity="center_vertical"
+                            android:text="ยูนิต :" />
+
+                        <TextView
+                            android:id="@+id/txt_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/edt_height"
+                            android:layout_marginLeft="@dimen/fab_margin"
+                            android:layout_weight=".5"
+                            android:gravity="center_vertical"
+                            android:text="A-10101" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:layout_weight=".5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space"
                     android:background="@drawable/edt"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
                         android:layout_marginLeft="@dimen/fab_margin"
-                        android:layout_weight=".5"
+                        android:layout_weight=".3"
                         android:gravity="center_vertical"
-                        android:text="ยูนิต :" />
+                        android:text="ชื่อ - สกุล :" />
 
                     <TextView
-                        android:id="@+id/txt_unit"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txt_name"
+                        android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
-                        android:layout_marginLeft="@dimen/fab_margin"
-                        android:layout_weight=".5"
+                        android:layout_weight=".35"
                         android:gravity="center_vertical"
-                        android:text="A-10101" />
+                        android:text="Name" />
+
+                    <TextView
+                        android:id="@+id/txt_lastname"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight=".35"
+                        android:gravity="center_vertical"
+                        android:text="Lastname" />
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space"
+                    android:background="@drawable/edt"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space"
-                android:background="@drawable/edt"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_weight=".4"
+                        android:gravity="center_vertical"
+                        android:text="ผู้ติดตามทั้งหมด :" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:layout_weight=".3"
-                    android:gravity="center_vertical"
-                    android:text="ชื่อ - สกุล :" />
+                    <TextView
+                        android:id="@+id/txt_follow_total"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight=".4"
+                        android:gravity="center"
+                        android:text="Follower" />
 
-                <TextView
-                    android:id="@+id/txt_name"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight=".35"
-                    android:gravity="center_vertical"
-                    android:text="Name" />
+                    <ImageView
+                        android:id="@+id/followpick"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/ic_search" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txt_lastname"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight=".35"
-                    android:gravity="center_vertical"
-                    android:text="Lastname" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space"
+                    android:background="@drawable/edt"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_marginLeft="@dimen/fab_margin"
+                        android:layout_weight=".4"
+                        android:gravity="center_vertical"
+                        android:text="กิจกรรมที่ลง :" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space"
-                android:background="@drawable/edt"
-                android:orientation="horizontal"
-                android:weightSum="1">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:layout_weight=".4"
-                    android:gravity="center_vertical"
-                    android:text="ผู้ติดตามทั้งหมด :" />
-                <TextView
-                    android:id="@+id/txt_follow_total"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight=".4"
-                    android:gravity="center"
-                    android:text="Follower" />
-                <ImageView
-                    android:id="@+id/followpick"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/ic_search" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/txt_act_total"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight=".4"
+                        android:gravity="center"
+                        android:text="Activity" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space"
-                android:background="@drawable/edt"
-                android:orientation="horizontal"
-                android:weightSum="1">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_marginLeft="@dimen/fab_margin"
-                    android:layout_weight=".4"
-                    android:gravity="center_vertical"
-                    android:text="กิจกรรมที่ลง :" />
-                <TextView
-                    android:id="@+id/txt_act_total"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight=".4"
-                    android:gravity="center"
-                    android:text="Activity" />
-                <ImageView
-                    android:id="@+id/actpick"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/edt_height"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/ic_search" />
+                    <ImageView
+                        android:id="@+id/actpick"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/ic_search" />
 
-            </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/regis_area"
+                    android:gravity="right"
+                    android:layout_marginTop="@dimen/space_X"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+                    <Button
+                        android:id="@+id/btn_regis"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_height"
+                        android:layout_weight=".3"
+                        android:text="ลงทะเบียนกิจกรรมนี้"
+                        android:background="@drawable/button_s1"
+                        android:textColor="@color/colorButtonf"/>
+                </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/swZone"
                     android:layout_width="match_parent"
@@ -215,6 +242,7 @@
                     android:orientation="horizontal"
                     android:visibility="gone"
                     android:weightSum="1">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
@@ -222,6 +250,7 @@
                         android:layout_weight=".4"
                         android:gravity="center_vertical"
                         android:text="ระยะทาง :" />
+
                     <TextView
                         android:id="@+id/txt_run_type"
                         android:layout_width="0dp"
@@ -229,43 +258,46 @@
                         android:layout_weight=".4"
                         android:gravity="center"
                         android:text="Activity" />
+
                     <ImageView
                         android:id="@+id/swap"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/edt_height"
                         android:layout_weight="0.2"
-                        android:src="@drawable/ic_swap" />
-
+                        android:src="@drawable/ic_swapp"/>
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 
     </LinearLayout>
-<LinearLayout
-    android:id="@+id/submit_area2"
-    android:layout_alignParentBottom="true"
-    android:layout_margin="@dimen/fab_margin"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/edt_height"
-    android:weightSum="1">
-    <Button
-        android:text="ยืนยัน"
-        android:id="@+id/savegroup"
-        android:textColor="@color/colorButtonf"
-        android:background="@drawable/button_confirm_s1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight=".5"/>
 
-    <Button
-        android:text="ยกเลิก"
-        android:textColor="@color/colorButtonf"
-        android:layout_marginLeft="@dimen/space"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight=".5"
-        android:background="@drawable/button_cancel_s1" />
+    <LinearLayout
+        android:id="@+id/submit_area2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edt_height"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:weightSum="1">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/savegroup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:background="@drawable/button_confirm_s1"
+            android:text="ยืนยัน"
+            android:textColor="@color/colorButtonf" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/space"
+            android:layout_weight=".5"
+            android:background="@drawable/button_cancel_s1"
+            android:text="ยกเลิก"
+            android:textColor="@color/colorButtonf" />
+
+    </LinearLayout>
 
 </RelativeLayout>

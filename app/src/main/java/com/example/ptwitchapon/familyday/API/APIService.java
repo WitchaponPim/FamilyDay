@@ -51,4 +51,8 @@ public interface APIService {
     @FormUrlEncoded
     @POST("version_chk")
     Call<VerModel> chkver(@Field("version") String ver);
+
+    @FormUrlEncoded
+    @POST("regisNsave")
+    Call<List<SaveModel>> regisNsave(@Field("qrcode")String qr, @Field("username") String user, @Field("activity") String act_code);
 }

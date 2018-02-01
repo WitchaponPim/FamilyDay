@@ -132,6 +132,17 @@
                     android:text="Submit"
                     android:textColor="@color/colorButtonf" />
 
+                    <TextView
+
+                        android:layout_gravity="center_horizontal"
+                        android:visibility="gone"
+                        android:id="@+id/sum_tamma"
+                        android:layout_margin="@dimen/fab_margin"
+                        android:text="SUM!"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/textsize_XH"/>
+
 
 
 
@@ -190,19 +201,10 @@
                             android:background="@drawable/button_s1"
                             android:text="นับ"
                             android:textColor="@color/colorButtonf" />
+
+
                     </LinearLayout>
-                    <TextView
-                        android:id="@+id/sum_tamma"
-                        android:text="SUM!"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textSize="@dimen/textsize_XH"/>
-                    <TextView
-                        android:id="@+id/total_tamma"
-                        android:text="TOTAL!"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textSize="@dimen/textsize_XH"/>
+
 
                 </LinearLayout>
 

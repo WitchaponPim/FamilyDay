@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.ptwitchapon.familyday.API.ChangeCallbackListener;
 import com.example.ptwitchapon.familyday.API.ConnectionManager;
 import com.example.ptwitchapon.familyday.API.LoginCallbackListener;
+import com.example.ptwitchapon.familyday.API.RegisNsaveCallbackListener;
 import com.example.ptwitchapon.familyday.API.SaveQrCallbackListener;
 import com.example.ptwitchapon.familyday.API.ScanQrCallbackListener;
 import com.example.ptwitchapon.familyday.Model.RegisModel;
@@ -40,9 +41,9 @@ public class ConfirmActivity extends AppCompatActivity {
     String TAG = "Poon";
     String runTYPE;
     TextView txtqr, txtname, txtlastname, txtunit, txtact, txtfol, txtqr2,alert,runtype;
-    Button btn;
+    Button btn,btn_cancel,btn_regis;
     ImageView followpick, actpick,swap;
-    LinearLayout btnarea,swaparea;
+    LinearLayout btnarea,swaparea,regisarea;
     boolean foundrun;
     ArrayList<String> pickList = new ArrayList<>();
     ArrayList<Integer> position = new ArrayList<>();
@@ -57,6 +58,7 @@ public class ConfirmActivity extends AppCompatActivity {
     String[] parentQR = new String[Utils.regisModel.getPARENT().size()];
 
     ConnectionManager connect = new ConnectionManager();
+    RegisNsaveCallbackListener regisNsaveCallbackListener;
     SaveQrCallbackListener saveQrCallbackListener;
     ScanQrCallbackListener callbackListener;
     ChangeCallbackListener changeCallbackListener;
@@ -67,6 +69,7 @@ public class ConfirmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirm);
         btnarea = (LinearLayout) findViewById(R.id.submit_area2);
         swaparea = (LinearLayout) findViewById(R.id.swZone);
+        regisarea = (LinearLayout) findViewById(R.id.regis_area);
         txtqr = (TextView) findViewById(R.id.txt_qr);
         txtqr2 = (TextView) findViewById(R.id.txt_qr_h);
         txtact = (TextView) findViewById(R.id.txt_act_total);
@@ -80,8 +83,35 @@ public class ConfirmActivity extends AppCompatActivity {
         actpick = (ImageView) findViewById(R.id.actpick);
         swap = (ImageView) findViewById(R.id.swap);
         btn = (Button) findViewById(R.id.savegroup);
-        check_act();
+        btn_cancel = (Button) findViewById(R.id.cancel);
+        btn_regis = (Button) findViewById(R.id.btn_regis);
+
         createAct();
+        check_act();
+
+
+        regisNsaveCallbackListener = new RegisNsaveCallbackListener() {
+            @Override
+            public void onResponse(List<SaveModel> saveModels, Retrofit retrofit) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+
+            @Override
+            public void onBodyError(ResponseBody responseBody) {
+
+            }
+
+            @Override
+            public void onBodyErrorIsNull() {
+
+            }
+        };
+
         saveQrCallbackListener = new SaveQrCallbackListener() {
             @Override
             public void onResponse(List<SaveModel> saveModels, Retrofit retrofit) {
@@ -157,6 +187,13 @@ public class ConfirmActivity extends AppCompatActivity {
             }
         };
 
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,18 +211,20 @@ public class ConfirmActivity extends AppCompatActivity {
         txtfol.setText(String.valueOf(Utils.regisModel.getPARENT().size()));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("ยืนยันการลงทะเบียน");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
-        if(foundrun){
 
-            swaparea.setVisibility(View.VISIBLE);
-            String newRun = runTYPE.replace("เดิน-วิ่ง","");
-            runtype.setText(newRun);
-        }
 
 
         followpick.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +247,13 @@ public class ConfirmActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 swapSelect(runTYPE);
+            }
+        });
+
+        btn_regis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                regisNsave();
             }
         });
 
@@ -316,21 +362,38 @@ public class ConfirmActivity extends AppCompatActivity {
 
     public void createAct() {
         boolean test;
+        String status;
         for (int i = 0; i < Utils.regisModel.getACTIVITIES().size(); i++) {
+            status = "";
+            if(Utils.regisModel.getACTIVITIES().get(i).getSTATUS().equals("1")){
+                Log.d(TAG, "createAct: "+Utils.regisModel.getACTIVITIES().get(i).getSTATUS());
+                status = " : ลงทะเบียนแล้ว";
+            }
+            
             test = Utils.regisModel.getACTIVITIES().get(i).getET_TNAME().contains("เดิน-วิ่ง");
             Log.d(TAG, "createAct: "+test);
             if(test){
                 runTYPE = Utils.regisModel.getACTIVITIES().get(i).getET_TNAME();
                 foundrun = test;
             }else {
-                actList.add(Utils.regisModel.getACTIVITIES().get(i).getET_TNAME());
+                actList.add(Utils.regisModel.getACTIVITIES().get(i).getET_TNAME() + status);
             }
 
         }
 
     }
 
+    public void regisNsave() {
+        StringBuffer sb = new StringBuffer(Utils.regisModel.getPROFILE().get(0).getRG_SMS());
+        for (int i = 0; i < pickList.size(); i++) {
+            sb.append("," + pickList.get(i));
+        }
 
+        Log.d(TAG, "save: " + sb + " " + Utils.userModel.getProfile().getUsername()+" "+Utils.act_id );
+        Utils.toast(getApplicationContext(),sb.toString()+Utils.userModel.getProfile().getUsername()+Utils.act_id);
+        //connect.regisNsave(regisNsaveCallbackListener,sb.toString(),Utils.userModel.getProfile().getUsername(),Utils.act_id);
+
+    }
     public void save() {
         StringBuffer sb = new StringBuffer(Utils.regisModel.getPROFILE().get(0).getRG_SMS());
         for (int i = 0; i < pickList.size(); i++) {
@@ -373,22 +436,42 @@ public class ConfirmActivity extends AppCompatActivity {
         finish();
     }
     public void check_act(){
-
+        String newtitle = Utils.loca;
+        String newtitletrim = newtitle.trim();
         List<String> list = new ArrayList<>();
         for (int i = 0 ;i<Utils.regisModel.getACTIVITIES().size();i++){
             list.add(Utils.regisModel.getACTIVITIES().get(i).getET_TNAME());
-            Log.d(TAG, "check_act: "+list.get(i)+ " : " + Utils.loca);
+            Log.d(TAG, "check_act: "+list.get(i)+ " : " + newtitletrim);
         }
 
-        if (list.contains(Utils.loca)) {
+        if (list.contains(newtitletrim)) {
+            if(foundrun&&(Utils.loca.matches("เดิน-วิ่ง 2.5 กม.")||Utils.loca.matches("เดิน-วิ่ง 5.0 กม."))){
+                swaparea.setVisibility(View.VISIBLE);
+                String newRun = runTYPE.replace("เดิน-วิ่ง","");
+                runtype.setText(newRun);
+            }
             txtqr2.setVisibility(View.VISIBLE);
             btnarea.setVisibility(View.VISIBLE);
             alert.setVisibility(View.GONE);
+
         }else {
+            if (Utils.loca.matches("ธรรมะ(.*)")||Utils.loca.matches("คอน(.*)")){
+                regisarea.setVisibility(View.VISIBLE);
+            }
+            if(foundrun){
+                swaparea.setVisibility(View.VISIBLE);
+                String newRun = runTYPE.replace("เดิน-วิ่ง","");
+                runtype.setText(newRun);
+                regisarea.setVisibility(View.GONE);
+            }else{
+                regisarea.setVisibility(View.VISIBLE);
+            }
             alert.setText("ไม่ได้ลงทะเบียนกิจกรรม "+ Utils.loca + " ไว้");
             alert.setVisibility(View.VISIBLE);
             txtqr2.setVisibility(View.INVISIBLE);
             btnarea.setVisibility(View.INVISIBLE);
         }
+
+
     }
 }

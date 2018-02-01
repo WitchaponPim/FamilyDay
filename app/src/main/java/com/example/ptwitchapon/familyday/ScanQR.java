@@ -38,13 +38,14 @@ public class ScanQR extends AppCompatActivity {
     CountCallbackListener countCallbackListener;
     CallbackListener callbackListener;
     String TAG = "Poon",title,actID;
-    TextView title_act;
+    TextView title_act,sum_tamma;
     EditText edt,total,total_run;
     Button btn,btn_count,back_btn,btn_count_run;
     LinearLayout count,count_run,ScanZone;
     RadioButton r0,r1,r2;
 
     ImageView title_icon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class ScanQR extends AppCompatActivity {
             @Override
             public void onResponse(Report_allModel result, Retrofit retrofit) {
                 Utils.toast(getApplicationContext(),result.getSUM());
+                sum_tamma.setText(result.getSUM()+" คน");
             }
 
             @Override
@@ -85,7 +87,7 @@ public class ScanQR extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d(TAG, "onFailure: ");
+                Log.d(TAG, "onFailure: "+t.toString());
             }
 
             @Override
@@ -141,6 +143,7 @@ public class ScanQR extends AppCompatActivity {
         btn_count_run = (Button) findViewById(R.id.countbtnrun);
         back_btn = (Button) findViewById(R.id.back_btn);
         title_act = (TextView) findViewById(R.id.title_act);
+        sum_tamma = (TextView) findViewById(R.id.sum_tamma);
         count = (LinearLayout) findViewById(R.id.countArea);
         count_run = (LinearLayout) findViewById(R.id.countArearun);
         ScanZone = (LinearLayout) findViewById(R.id.ScanZone);
@@ -171,6 +174,7 @@ public class ScanQR extends AppCompatActivity {
         if(title.equals("ธรรมะในสวน")){
             count.setVisibility(LinearLayout.VISIBLE);
             connect.calltamma(callbackListener);
+            sum_tamma.setVisibility(View.VISIBLE);
             btn_count.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -179,8 +183,9 @@ public class ScanQR extends AppCompatActivity {
                 }
             });
         }else if(title.contains("เดิน-วิ่ง")){
-            count_run.setVisibility(LinearLayout.VISIBLE);
-
+            if(Utils.userModel.getProfile().getUsername().equals("ptwitchapon")){
+                count_run.setVisibility(LinearLayout.VISIBLE);
+            }
             btn_count_run.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -249,13 +254,13 @@ public class ScanQR extends AppCompatActivity {
     public void GogoSearch(){
         Intent intent = new Intent(ScanQR.this,SearchActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     public void GogoConfirm(){
         Intent intent = new Intent(ScanQR.this,ConfirmActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.ptwitchapon.familyday;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.icu.util.UniversalTimeScale;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class SearchActivity extends AppCompatActivity{
     SearchView search;
     SearchAdapter adapter;
     RecyclerView list ;
+    ProgressDialog progressDialog;
     GridLayoutManager gridLayoutManager;
     ConnectionManager connect = new ConnectionManager();
     ScanQrCallbackListener scanQrCallbackListener ;
@@ -41,6 +43,7 @@ public class SearchActivity extends AppCompatActivity{
         scanQrCallbackListener = new ScanQrCallbackListener() {
             @Override
             public void onResponse(RegisModel regisModel, Retrofit retrofit) {
+                progressDialog.dismiss();
                 Utils.regisModel = regisModel;
                 validate(Integer.valueOf(Utils.regisModel.getSTATUS_ID()));
             }
@@ -71,6 +74,8 @@ public class SearchActivity extends AppCompatActivity{
             @Override
             public void onItemClick(RegisModel.PROFILEBean profileBean, int position) {
                 Utils.toast(SearchActivity.this,profileBean.getRG_SMS());
+                progressDialog = ProgressDialog.show(SearchActivity.this,"Please wait", "Loading...",true,false);
+
                 connect.scanqr(scanQrCallbackListener,profileBean.getRG_SMS(),"","");
             }
         });
@@ -101,7 +106,7 @@ public class SearchActivity extends AppCompatActivity{
     public void GogoConfirm(){
         Intent intent = new Intent(SearchActivity.this,ConfirmActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
 

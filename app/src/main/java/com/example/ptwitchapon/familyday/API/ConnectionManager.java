@@ -305,4 +305,31 @@ public class ConnectionManager {
             }
         });
     }
+
+    public void regisNsave(final RegisNsaveCallbackListener listener,String qr,String user ,String act_id){
+        Call call = con.regisNsave(qr,user,act_id);
+        call.enqueue(new Callback<List<SaveModel>>() {
+            @Override
+            public void onResponse(Response<List<SaveModel>> response, Retrofit retrofit) {
+                List<SaveModel> saveModel =  response.body();
+                if (saveModel == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse( saveModel, retrofit);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                listener.onFailure(t);
+            }
+        });
+    }
 }
