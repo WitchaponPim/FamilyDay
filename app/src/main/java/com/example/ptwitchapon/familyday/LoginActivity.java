@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String a = mPrefs.getString("user", null);
         String b = mPrefs.getString("password", null);
-        ver = "1.1";
+        ver = "1.2";
 
         loginCallbackListener = new LoginCallbackListener() {
             @Override
