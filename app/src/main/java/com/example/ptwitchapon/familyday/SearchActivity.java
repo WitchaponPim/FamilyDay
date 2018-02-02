@@ -50,17 +50,20 @@ public class SearchActivity extends AppCompatActivity{
 
             @Override
             public void onFailure(Throwable t) {
-
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
-
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyErrorIsNull() {
-
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
             }
         };
 

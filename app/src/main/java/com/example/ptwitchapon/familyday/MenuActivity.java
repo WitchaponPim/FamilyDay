@@ -80,6 +80,7 @@ public class MenuActivity extends AppCompatActivity {
                 }
                 intent.putExtra("title", title);
                 startActivity(intent);
+
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

@@ -23,7 +23,8 @@ import retrofit.Retrofit;
  */
 
 public class ConnectionManager {
-    String API = "http://familyday.lpn.co.th/familyday_dev/familyday/api/";
+//    String API = "http://familyday.lpn.co.th/familyday_dev/familyday/api/";
+    String API = "http://familyday.lpn.co.th/familyday/api/";
     public ConnectionManager() {
 
     }

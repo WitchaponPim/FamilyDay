@@ -45,9 +45,10 @@ public class SuccessActivity extends AppCompatActivity {
         adapter = new SuccessAdapter(getApplicationContext(), Utils.saveModel, new SuccessAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SaveModel profileBean, int position) {
-                Intent intent = new Intent(SuccessActivity.this,MenuActivity.class);
+                Intent intent = new Intent(SuccessActivity.this,ScanQR.class);
                 startActivity(intent);
                 finish();
+
             }
         });
         list.setAdapter(adapter);
@@ -58,6 +59,13 @@ public class SuccessActivity extends AppCompatActivity {
             public int getSpanSize(int position) {
                 return 1;
             }
+
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

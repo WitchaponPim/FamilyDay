@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String a = mPrefs.getString("user", null);
         String b = mPrefs.getString("password", null);
-        ver = "1.2";
+        ver = getResources().getString(R.string.version);
 
         loginCallbackListener = new LoginCallbackListener() {
             @Override
@@ -74,16 +74,23 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
+
                 Log.d(TAG, "onFailure: " + t.toString());
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
                 Log.d(TAG, "onBodyError: " + responseBody.toString());
             }
 
             @Override
             public void onBodyErrorIsNull() {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
                 Log.d(TAG, "onBodyErrorIsNull: ");
             }
 
@@ -103,16 +110,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 Log.d(TAG, "onFailure: ");
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
                 Log.d(TAG, "onBodyError: ");
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyErrorIsNull() {
                 Log.d(TAG, "onBodyErrorIsNull: ");
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
             }
         };
 
@@ -190,6 +200,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
                 startActivity(browserIntent);
+
             }
         });
         builder.setNegativeButton("ไม่ต้องการ", new DialogInterface.OnClickListener() {

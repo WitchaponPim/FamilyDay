@@ -76,4 +76,5 @@
     <string name="act2">เดิน-วิ่ง</string>
     <string name="act3">กีฬาประชาคม</string>
     <string name="act4">เกมส์-คอนเสิร์ต</string>
+    <string name="version">version : 2.0</string>
 </resources>

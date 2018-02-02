@@ -87,16 +87,22 @@ public class ScanQR extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 Log.d(TAG, "onFailure: " + t.toString());
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(), "ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
                 Log.d(TAG, "onBodyError: ");
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(), "ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyErrorIsNull() {
                 Log.d(TAG, "onBodyErrorIsNull: ");
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(), "ข้อมูลผิดพลาด");
             }
         };
 
@@ -112,18 +118,21 @@ public class ScanQR extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                Utils.toast(getApplicationContext(), t.toString());
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(), "ข้อมูลผิดพลาด");
                 Log.d(TAG, "onFailure: " + t);
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
-
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(), "ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyErrorIsNull() {
-
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(), "ข้อมูลผิดพลาด");
             }
         };
         title = getIntent().getStringExtra("title");
@@ -182,7 +191,7 @@ public class ScanQR extends AppCompatActivity {
             ScanZone.setVisibility(LinearLayout.GONE);
             btn.setVisibility(View.GONE);
         }
-        if (Utils.userModel.getProfile().getUsername().equals("ptwitchapon") ||Utils.userModel.getProfile().getUsername().equals("siwuttiporn") || Utils.userModel.getProfile().getUsername().equals("pmakkaraphon")) {
+        if (Utils.userModel.getProfile().getUsername().equals("ptwitchapon") || Utils.userModel.getProfile().getUsername().equals("siwuttiporn") || Utils.userModel.getProfile().getUsername().equals("pmakkaraphon")) {
             count_run.setVisibility(LinearLayout.VISIBLE);
             count.setVisibility(LinearLayout.VISIBLE);
             btn_count.setOnClickListener(new View.OnClickListener() {

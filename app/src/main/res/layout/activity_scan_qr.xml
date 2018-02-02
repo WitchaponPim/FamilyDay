@@ -121,6 +121,13 @@
                         android:src="@drawable/qrscan" />
 
                 </LinearLayout>
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorButtoncancel"
+                    android:text="*กรอกตัวอักษรอย่างน้อย 3 ตัวขึ้นไป"/>
                 <Button
                     android:id="@+id/btn_submit"
                     android:layout_width="match_parent"

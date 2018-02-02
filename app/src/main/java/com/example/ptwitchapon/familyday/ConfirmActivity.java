@@ -101,16 +101,22 @@ public class ConfirmActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
 
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
 
             }
 
             @Override
             public void onBodyErrorIsNull() {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
 
             }
         };
@@ -129,15 +135,21 @@ public class ConfirmActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 Log.d(TAG, "onFailure: "+t.toString());
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
             }
 
             @Override
             public void onBodyError(ResponseBody responseBody) {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
                 Log.d(TAG, "onBodyError: "+responseBody.toString());
             }
 
             @Override
             public void onBodyErrorIsNull() {
+                progressDialog.dismiss();
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
 
             }
         };
@@ -152,6 +164,7 @@ public class ConfirmActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
+                Utils.toast(getApplicationContext(),"ข้อมูลผิดพลาด");
                 Log.d(TAG, "onFailure: "+ t);
             }
 
@@ -214,18 +227,17 @@ public class ConfirmActivity extends AppCompatActivity {
         txtfol.setText(String.valueOf(Utils.regisModel.getPARENT().size()));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("ยืนยันการลงทะเบียน");
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
 
 
@@ -458,15 +470,15 @@ public class ConfirmActivity extends AppCompatActivity {
             alert.setVisibility(View.GONE);
 
         }else {
-            if (Utils.loca.matches("ธรรมะ(.*)")||Utils.loca.matches("คอน(.*)")){
+            if (Utils.loca.matches("ธรรมะ(.*)")||Utils.loca.matches("(.*)คอน(.*)")){
                 regisarea.setVisibility(View.VISIBLE);
             }
-            if(foundrun&&Utils.loca.matches("เดิน-วิ่ง(.*)")){
+            if(foundrun&&Utils.loca.matches("(.*)เดิน-วิ่ง(.*)")){
                 swaparea.setVisibility(View.VISIBLE);
                 String newRun = runTYPE.replace("เดิน-วิ่ง","");
                 runtype.setText(newRun);
                 regisarea.setVisibility(View.GONE);
-            }else if(!foundrun&&Utils.loca.matches("เดิน-วิ่ง(.*)")){
+            }else if(!foundrun&&Utils.loca.matches("(.*)เดิน-วิ่ง(.*)")){
                 regisarea.setVisibility(View.VISIBLE);
             }else if(Utils.loca.matches("กีฬาประชาคมลุมพินี-(.*)")){
                 regisarea.setVisibility(View.GONE);
