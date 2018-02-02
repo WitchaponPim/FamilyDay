@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String a = mPrefs.getString("user", null);
         String b = mPrefs.getString("password", null);
-        ver = mPrefs.getString("version", "3.0");
+        ver = "1.1";
 
         loginCallbackListener = new LoginCallbackListener() {
             @Override
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Log.d(TAG, "onResponse: "+chkversionModel.getSTATUS()+" "+chkversionModel.getLINK()+" "+chkversionModel.getVERSION());
                 if (chkversionModel.getLINK()!=null){
-                    download(chkversionModel.getLINK(),chkversionModel.getVERSION());
+                    download(chkversionModel.getLINK());
                 }
             }
 
@@ -149,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
     private void onLoginSucced() {
         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void onLoginFailed() {
@@ -179,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
 
         return valid;
     }
-    public void download(final String link, final String number){
+    public void download(final String link){
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("อัพเดท");
@@ -187,8 +188,6 @@ public class LoginActivity extends AppCompatActivity {
         builder.setPositiveButton("ต้องการ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                mEditor.putString("version",number);
-                mEditor.commit();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
                 startActivity(browserIntent);
             }

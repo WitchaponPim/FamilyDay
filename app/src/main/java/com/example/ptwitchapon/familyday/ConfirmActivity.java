@@ -93,6 +93,9 @@ public class ConfirmActivity extends AppCompatActivity {
         regisNsaveCallbackListener = new RegisNsaveCallbackListener() {
             @Override
             public void onResponse(List<SaveModel> saveModels, Retrofit retrofit) {
+                progressDialog.dismiss();
+                Utils.saveModel =  saveModels;
+                the_end();
 
             }
 
@@ -388,10 +391,10 @@ public class ConfirmActivity extends AppCompatActivity {
         for (int i = 0; i < pickList.size(); i++) {
             sb.append("," + pickList.get(i));
         }
-
+        progressDialog = ProgressDialog.show(ConfirmActivity.this,"Please wait", "Loading...",true,false);
         Log.d(TAG, "save: " + sb + " " + Utils.userModel.getProfile().getUsername()+" "+Utils.act_id );
         Utils.toast(getApplicationContext(),sb.toString()+Utils.userModel.getProfile().getUsername()+Utils.act_id);
-        //connect.regisNsave(regisNsaveCallbackListener,sb.toString(),Utils.userModel.getProfile().getUsername(),Utils.act_id);
+        connect.regisNsave(regisNsaveCallbackListener,sb.toString(),Utils.userModel.getProfile().getUsername(),Utils.act_id);
 
     }
     public void save() {
@@ -458,13 +461,15 @@ public class ConfirmActivity extends AppCompatActivity {
             if (Utils.loca.matches("ธรรมะ(.*)")||Utils.loca.matches("คอน(.*)")){
                 regisarea.setVisibility(View.VISIBLE);
             }
-            if(foundrun){
+            if(foundrun&&Utils.loca.matches("เดิน-วิ่ง(.*)")){
                 swaparea.setVisibility(View.VISIBLE);
                 String newRun = runTYPE.replace("เดิน-วิ่ง","");
                 runtype.setText(newRun);
                 regisarea.setVisibility(View.GONE);
-            }else{
+            }else if(!foundrun&&Utils.loca.matches("เดิน-วิ่ง(.*)")){
                 regisarea.setVisibility(View.VISIBLE);
+            }else if(Utils.loca.matches("กีฬาประชาคมลุมพินี-(.*)")){
+                regisarea.setVisibility(View.GONE);
             }
             alert.setText("ไม่ได้ลงทะเบียนกิจกรรม "+ Utils.loca + " ไว้");
             alert.setVisibility(View.VISIBLE);

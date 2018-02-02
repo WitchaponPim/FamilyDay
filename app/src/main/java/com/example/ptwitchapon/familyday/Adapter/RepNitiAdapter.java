@@ -71,11 +71,8 @@ public class RepNitiAdapter extends BaseAdapter implements Filterable{
         ev2.setText(models.get(i).getS_SPORT());
         ev3.setText(models.get(i).getS_EVENT());
         ev4.setText(models.get(i).getS_EVENT2());
-        int totals = Integer.valueOf(models.get(i).getS_RUNNING())
-                +Integer.valueOf(models.get(i).getS_SPORT())
-                +Integer.valueOf(models.get(i).getS_EVENT())
-                +Integer.valueOf(models.get(i).getS_EVENT2());
-        total.setText(String.valueOf(totals));
+
+        total.setText(models.get(i).getE_WEBSITE());
 
         return view;
     }

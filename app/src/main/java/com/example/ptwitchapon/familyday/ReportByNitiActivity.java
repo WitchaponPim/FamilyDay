@@ -45,10 +45,7 @@ public class ReportByNitiActivity extends AppCompatActivity {
                 Utils.repNitiModels = repNitiModels;
                 Log.d(TAG, "onResponse: " + repNitiModels.get(0).getNT_TNAME().toString());
                 for (int i = 0; i < Utils.repNitiModels.size(); i++) {
-                    totals = totals + Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT())
-                            + Integer.valueOf(Utils.repNitiModels.get(i).getS_EVENT2()
-                            + Integer.valueOf(Utils.repNitiModels.get(i).getS_SPORT()
-                            + Integer.valueOf(Utils.repNitiModels.get(i).getS_RUNNING())));
+                    totals = totals + Integer.valueOf(Utils.repNitiModels.get(i).getE_WEBSITE());
                 }
                 setadapter();
             }
